@@ -36,7 +36,7 @@ const Hero = () => {
                         Connect With Me
                     </div>
                 </AnchorLink>
-                <a href='../../public/sahil_resume.pdf' download="sahil_resume.pdf" className="hero-resume py-2 px-6 border-2 border-[#2c5364] rounded-full text-[#2c5364] cursor-pointer hover:bg-[#2c5364] hover:text-white transition-all" >
+                <a href='/sahil_resume.pdf' download="sahil_resume.pdf" className="hero-resume py-2 px-6 border-2 border-[#2c5364] rounded-full text-[#2c5364] cursor-pointer hover:bg-[#2c5364] hover:text-white transition-all" >
                     My Resume
                 </a>
             </div>

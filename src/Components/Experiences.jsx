@@ -10,7 +10,7 @@ const Experiences = () => {
 
             {/* Experiences List */}
             <div className="experience-list w-[90%] sm:w-[85%] lg:w-[80%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-                {Experience_Data.reverse().map((experience, index) => (
+                {Experience_Data.map((experience, index) => (
                     <div key={index} className="experience-card border border-[#2c5364] p-4 rounded-lg shadow-md transition transform ease-linear hover:scale-105 hover:bg-gradient-to-r hover:from-[#0f2027] hover:via-[#203a43] hover:to-[#2c5364] duration-400 group" >
                         <h3 className="text-xl sm:text-2xl font-semibold text-[#2c5364] mb-2">{experience.e_name}</h3>
                         <div className="mb-4 flex flex-wrap">
