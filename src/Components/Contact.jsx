@@ -4,7 +4,7 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Title from './Title';
 
-const Contact = (props) => {
+const Contact = () => {
     const onSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -18,13 +18,14 @@ const Contact = (props) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Accept: "application/json",
+                Accept: "application/json"
             },
-            body: json,
+            body: json
         }).then((res) => res.json());
 
         if (res.success) {
-            toast.success("E-Mail Sent Successfully");
+            console.log("Success", res);
+            toast.success("E-Mail Sent Successfully")
         }
     };
 
@@ -81,9 +82,9 @@ const Contact = (props) => {
                 <div className="contact-form border border-[#2c5364] p-3 sm:p-6 rounded-lg">
                     <h3 className="text-xl font-semibold text-[#2c5364] mb-4">Send Me A Message :</h3>
                     <form onSubmit={onSubmit} className="flex flex-col gap-4">
-                        <input type="text" placeholder="Your Name" className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c5364]" required />
-                        <input type="email" placeholder="Your Email" className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c5364]" required />
-                        <textarea placeholder="Your Message" rows="4" className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c5364]" required ></textarea>
+                        <input type="text" name="name" placeholder="Your Name" className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c5364]" required />
+                        <input type="email" name="email" placeholder="Your Email" className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c5364]" required />
+                        <textarea name="message" placeholder="Your Message" rows="4" className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2c5364]" required ></textarea>
                         <button type="submit" className="bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] px-6 py-2 rounded-lg text-white hover:text-black shadow-md hover:scale-105 transform transition duration-300 ease-in-out" >
                             Submit
                         </button>
