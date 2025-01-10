@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { Typewriter } from "react-simple-typewriter";
+import { toast } from "react-toastify";
 
 // Separate Typewriter Component to prevent unnecessary re-renders
 const TypewriterEffect = memo(() => (
@@ -17,7 +18,7 @@ const TypewriterEffect = memo(() => (
 
 const Hero = () => {
     return (
-        <div id="Home" className="hero flex flex-col items-center gap-8 py-20 sm:py-40 px-4 sm:px-8 lg:px-16 xl:px-24">
+        <div id="Home" className="hero flex flex-col items-center gap-8 py-32 sm:py-48 sm:pb-32 px-4 sm:px-8 lg:px-16 xl:px-24">
             {/* Main Heading */}
             <h1 className="text-center w-full sm:w-3/4 lg:w-[70%] text-3xl sm:text-4xl lg:text-4xl font-bold text-gray-700 leading-snug">
                 I'm <span className="bg-gradient-to-r from-[#2c5364] to-[#203a43] bg-clip-text text-transparent">Sahil Miyawala</span>,{" "}

@@ -13,7 +13,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className="navbar flex items-center justify-between py-[20px] px-[20px] lg:px-[140px] shadow-lg relative z-50">
+        <div className="navbar fixed-top bg-[#161513] flex items-center justify-between py-[20px] px-[20px] lg:px-[140px] shadow-lg  z-50">
             {/* Logo */}
             <AnchorLink className="anchor-link" offset={50} href={`#Home`}>
                 <h1 className="text-xl font-bold text-[#2c5364] cursor-pointer">

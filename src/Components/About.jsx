@@ -5,7 +5,7 @@ import Title from "./Title";
 const About = () => {
     return (
         <>
-            <div id="AboutMe" className="about flex flex-col items-center justify-center gap-8 py-20 sm:py-40 pt-0 px-4 sm:px-8 lg:px-16">
+            <div id="AboutMe" className="about flex flex-col items-center justify-center gap-8 py-20 sm:py-40 pt-0 sm:pt-20 px-4 sm:px-8 lg:px-16">
                 {/* Title Section */}
                 <Title title="About Me" />
 
