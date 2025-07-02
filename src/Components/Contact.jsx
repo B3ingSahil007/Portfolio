@@ -4,7 +4,7 @@ import { useState } from "react"
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md"
 import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa"
 import { toast } from "react-toastify"
-import Title from "./title"
+import Title from "./Title"
 import { useScrollAnimation } from "../hooks/use-scroll-animation"
 import { useTheme } from "../Context/theme-context"
 
