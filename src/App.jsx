@@ -4,14 +4,14 @@ import { useEffect } from "react"
 import { ThemeProvider, useTheme } from "./Context/theme-context"
 import LoadingScreen from "./Components/loading-screen"
 import ThemeToggle from "./Components/theme-toggle"
-import Navbar from "./components/navbar"
+import Navbar from "./Components/Navbar"
 import Hero from "./Components/Hero"
-import About from "./components/about"
-import Services from "./components/services"
-import MyWork from "./components/mywork"
-import Experiences from "./components/experiences"
-import Contact from "./components/contact"
-import Footer from "./components/footer"
+import About from "./Components/About"
+import Services from "./Components/Services"
+import MyWork from "./Components/MyWork"
+import Experiences from "./Components/Experiences"
+import Contact from "./Components/Contact"
+import Footer from "./Components/Footer"
 
 const AppContent = () => {
   const { isLoading, isDark } = useTheme()
@@ -42,8 +42,8 @@ const AppContent = () => {
   return (
     <div className={`min-h-screen transition-all duration-1000 ${isDark ? "bg-gray-900" : "bg-white"}`}>
       <Navbar />
-      <ThemeToggle />
       <main>
+        <ThemeToggle />
         <Hero />
         <About />
         <Services />

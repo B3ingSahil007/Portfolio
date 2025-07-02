@@ -61,10 +61,10 @@ const Contact = () => {
     >
       <Title title="Contact Me" />
 
-      <div ref={ref} className="contact-content w-[90%] lg:w-[80%] grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div ref={ref} className="contact-content w-[75%] lg:w-[80%] grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Contact Details */}
         <div
-          className={`contact-details flex flex-col items-center lg:items-start p-8 rounded-2xl transition-all duration-1000 ${
+          className={`contact-details flex flex-col items-center lg:items-start p-4 rounded-2xl transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
           } ${isDark ? "bg-gray-800" : "bg-gray-50"}`}
         >
