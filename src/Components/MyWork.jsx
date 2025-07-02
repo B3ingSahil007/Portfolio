@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { FaArrowRight, FaExternalLinkAlt, FaGithub } from "react-icons/fa"
 import mywork_data from "../assets/mywork_data"
-import Title from "./title"
+import Title from "./Title"
 import { useScrollAnimation } from "../hooks/use-scroll-animation"
 import { useTheme } from "../Context/theme-context"
 import error from "../assets/error.gif"

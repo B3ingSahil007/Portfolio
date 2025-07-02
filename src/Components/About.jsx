@@ -1,7 +1,7 @@
 "use client"
 
-import Skills from "./skills"
-import Title from "./title"
+import Skills from "./Skills"
+import Title from "./Title"
 import { useScrollAnimation } from "../hooks/use-scroll-animation"
 import { useTheme } from "../Context/theme-context"
 

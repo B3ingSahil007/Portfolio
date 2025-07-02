@@ -3,7 +3,7 @@
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaBootstrap, FaNodeJs, FaGitAlt, FaGithub, FaPython } from "react-icons/fa"
 import { SiMui, SiExpress, SiMongodb, SiTailwindcss, SiFirebase, SiFigma, SiVercel, SiHeroku } from "react-icons/si"
 import { VscCode as VscVscode } from "react-icons/vsc"
-import Title from "./title"
+import Title from "./Title"
 import { useScrollAnimation } from "../hooks/use-scroll-animation"
 import { useTheme } from "../Context/theme-context"
 

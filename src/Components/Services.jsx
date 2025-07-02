@@ -2,7 +2,7 @@
 
 import { FaDesktop, FaLaptopCode, FaPen, FaShoppingCart, FaCode, FaCloud, FaMobileAlt } from "react-icons/fa";
 import Services_Data from "../assets/services_data";
-import Title from "./title";
+import Title from "./Title";
 import { useScrollAnimation } from "../hooks/use-scroll-animation";
 import { useTheme } from "../Context/theme-context";
 

@@ -1,7 +1,7 @@
 "use client"
 
 import Experience_Data from "../assets/experience_data"
-import Title from "./title"
+import Title from "./Title"
 import { useScrollAnimation } from "../hooks/use-scroll-animation"
 import { useTheme } from "../Context/theme-context"
 
