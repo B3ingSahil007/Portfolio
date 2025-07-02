@@ -1,28 +1,66 @@
-import React from 'react'
-import Navbar from './Components/Navbar'
-import Hero from './Components/Hero'
-import About from './Components/About'
-import Services from './Components/Services'
-import MyWork from './Components/MyWork'
-import Experiences from './Components/Experiences'
-import Contact from './Components/Contact'
-import Footer from './Components/Footer'
-import { ToastContainer, Slide } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+"use client"
+
+import { useEffect } from "react"
+import { ThemeProvider, useTheme } from "./Context/theme-context"
+import LoadingScreen from "./Components/loading-screen"
+import ThemeToggle from "./Components/theme-toggle"
+import Navbar from "./components/navbar"
+import Hero from "./Components/Hero"
+import About from "./components/about"
+import Services from "./components/services"
+import MyWork from "./components/mywork"
+import Experiences from "./components/experiences"
+import Contact from "./components/contact"
+import Footer from "./components/footer"
+
+const AppContent = () => {
+  const { isLoading, isDark } = useTheme()
+
+  useEffect(() => {
+    // Smooth scrolling for anchor links
+    const handleSmoothScroll = (e) => {
+      if (e.target.closest(".anchor-link")) {
+        e.preventDefault()
+        const href = e.target.closest(".anchor-link").getAttribute("href")
+        if (href.startsWith("#")) {
+          const element = document.querySelector(href)
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" })
+          }
+        }
+      }
+    }
+
+    document.addEventListener("click", handleSmoothScroll)
+    return () => document.removeEventListener("click", handleSmoothScroll)
+  }, [])
+
+  if (isLoading) {
+    return <LoadingScreen />
+  }
+
+  return (
+    <div className={`min-h-screen transition-all duration-1000 ${isDark ? "bg-gray-900" : "bg-white"}`}>
+      <Navbar />
+      <ThemeToggle />
+      <main>
+        <Hero />
+        <About />
+        <Services />
+        <MyWork />
+        <Experiences />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  )
+}
 
 const App = () => {
   return (
-    <>
-      <ToastContainer position="bottom-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" transition={Slide} />
-      <Navbar />
-      <Hero />
-      <About />
-      <Services />
-      <MyWork />
-      <Experiences />
-      <Contact />
-      <Footer />
-    </>
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   )
 }
 

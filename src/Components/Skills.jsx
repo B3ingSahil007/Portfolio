@@ -1,125 +1,104 @@
-import React from 'react';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaBootstrap, FaNodeJs, FaGitAlt, FaGithub, FaPython } from 'react-icons/fa';
-import { SiMui, SiExpress, SiMongodb, SiTailwindcss, SiFirebase, SiFigma, SiVercel, SiHeroku } from 'react-icons/si';
-import { VscCode as VscVscode } from 'react-icons/vsc';
-import Title from './Title';
+"use client"
+
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaBootstrap, FaNodeJs, FaGitAlt, FaGithub, FaPython } from "react-icons/fa"
+import { SiMui, SiExpress, SiMongodb, SiTailwindcss, SiFirebase, SiFigma, SiVercel, SiHeroku } from "react-icons/si"
+import { VscCode as VscVscode } from "react-icons/vsc"
+import Title from "./title"
+import { useScrollAnimation } from "../hooks/use-scroll-animation"
+import { useTheme } from "../Context/theme-context"
 
 const Skills = () => {
+  const [ref, isVisible] = useScrollAnimation(0.2)
+  const { isDark } = useTheme()
+
+  const skillCategories = [
+    {
+      title: "Frontend Development",
+      skills: [
+        { name: "HTML", icon: FaHtml5, color: "#E34F26" },
+        { name: "CSS", icon: FaCss3Alt, color: "#1572B6" },
+        { name: "JavaScript", icon: FaJs, color: "#F7DF1E" },
+        { name: "ReactJS", icon: FaReact, color: "#61DAFB" },
+        { name: "Bootstrap", icon: FaBootstrap, color: "#7952B3" },
+        { name: "Material-UI", icon: SiMui, color: "#007FFF" },
+        { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+      ],
+    },
+    {
+      title: "Backend Development",
+      skills: [
+        { name: "Node.js", icon: FaNodeJs, color: "#8CC84B" },
+        { name: "Express.js", icon: SiExpress, color: "#000000" },
+        { name: "Python", icon: FaPython, color: "#306998" },
+        { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+        { name: "Firebase", icon: SiFirebase, color: "#FFCB2B" },
+      ],
+    },
+    {
+      title: "Tools & Version Control",
+      skills: [
+        { name: "Git", icon: FaGitAlt, color: "#F1502F" },
+        { name: "GitHub", icon: FaGithub, color: "#181717" },
+        { name: "VS Code", icon: VscVscode, color: "#0066B8" },
+      ],
+    },
+    {
+      title: "Other Tools / Technologies",
+      skills: [
+        { name: "Figma", icon: SiFigma, color: "#F24E1E" },
+        { name: "Vercel", icon: SiVercel, color: "#000000" },
+        { name: "Heroku", icon: SiHeroku, color: "#6762A6" },
+      ],
+    },
+  ]
+
   return (
-    <>
-      <div className="skills">
-        {/* Title Section */}
-        <Title title="My Skills" />
+    <div className="skills py-20">
+      <Title title="My Skills" />
 
-        {/* Skills Categories */}
-        <div className="skills-categories flex flex-wrap justify-center gap-16">
-          {/* Frontend Skills */}
-          <div className="frontend-skills text-center">
-            <h2 className="text-xl font-semibold text-[#2c5364] mb-4">Frontend Development</h2>
+      <div ref={ref} className="skills-categories flex flex-wrap justify-center gap-16">
+        {skillCategories.map((category, categoryIndex) => (
+          <div
+            key={category.title}
+            className={`skills-category text-center transition-all duration-1000 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
+            style={{ transitionDelay: `${categoryIndex * 200}ms` }}
+          >
+            <h2 className={`text-2xl font-semibold mb-6 ${isDark ? "text-blue-400" : "text-[#2563eb]"}`}>
+              {category.title}
+            </h2>
             <div className="skills-list grid grid-cols-2 sm:grid-cols-3 gap-6">
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <FaHtml5 className="text-4xl mb-2 mx-auto text-[#E34F26]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>HTML</span>
-              </div>
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <FaCss3Alt className="text-4xl mb-2 mx-auto text-[#1572B6]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>CSS</span>
-              </div>
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <FaJs className="text-4xl mb-2 mx-auto text-[#F7DF1E]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>JavaScript</span>
-              </div>
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <FaReact className="text-4xl mb-2 mx-auto text-[#61DAFB]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>ReactJS</span>
-              </div>
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <FaBootstrap className="text-4xl mb-2 mx-auto text-[#7952B3]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>Bootstrap</span>
-              </div>
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <SiMui className="text-4xl mb-2 mx-auto text-[#007FFF]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>Material-UI</span>
-              </div>
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <SiTailwindcss className="text-4xl mb-2 mx-auto text-[#06B6D4]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>Tailwind CSS</span>
-              </div>
+              {category.skills.map((skill, skillIndex) => {
+                const IconComponent = skill.icon
+                return (
+                  <div
+                    key={skill.name}
+                    className={`skill border p-4 rounded-xl transition-all duration-500 hover:scale-110 hover:shadow-xl group cursor-pointer ${
+                      isDark
+                        ? "bg-gray-800 border-gray-700 text-gray-300 hover:bg-gradient-to-br hover:from-[#2563eb] hover:to-[#3b82f6]"
+                        : "bg-white border-gray-200 text-gray-700 hover:bg-gradient-to-br hover:from-[#2563eb] hover:to-[#3b82f6]"
+                    } hover:text-white`}
+                    style={{
+                      animationDelay: `${categoryIndex * 200 + skillIndex * 100}ms`,
+                      transform: isVisible ? "translateY(0)" : "translateY(20px)",
+                      opacity: isVisible ? 1 : 0,
+                    }}
+                  >
+                    <IconComponent
+                      className="text-4xl mb-3 mx-auto group-hover:text-white transition-all duration-300 group-hover:animate-bounce"
+                      style={{ color: skill.color }}
+                    />
+                    <span className="font-medium group-hover:animate-pulse">{skill.name}</span>
+                  </div>
+                )
+              })}
             </div>
           </div>
-
-          {/* Backend Skills */}
-          <div className="backend-skills text-center">
-            <h2 className="text-xl font-semibold text-[#2c5364] mb-4">Backend Development</h2>
-            <div className="skills-list grid grid-cols-2 sm:grid-cols-3 gap-6">
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <FaNodeJs className="text-4xl mb-2 mx-auto text-[#8CC84B]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>Node.js</span>
-              </div>
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <SiExpress className="text-4xl mb-2 mx-auto text-[#000000]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>Express.js</span>
-              </div>
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <FaPython className="text-4xl mb-2 mx-auto text-[#306998]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>Python</span>
-              </div>
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <SiMongodb className="text-4xl mb-2 mx-auto text-[#47A248]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>MongoDB</span>
-              </div>
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <SiFirebase className="text-4xl mb-2 mx-auto text-[#FFCB2B]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>Firebase</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Tools & Version Control */}
-          <div className="tools-skills text-center">
-            <h2 className="text-xl font-semibold text-[#2c5364] mb-4">Tools & Version Control</h2>
-            <div className="skills-list grid grid-cols-2 sm:grid-cols-3 gap-6">
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <FaGitAlt className="text-4xl mb-2 mx-auto text-[#F1502F]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>Git</span>
-              </div>
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <FaGithub className="text-4xl mb-2 mx-auto text-[#181717]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>GitHub</span>
-              </div>
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <VscVscode className="text-4xl mb-2 mx-auto text-[#0066B8]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>VS Code</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="other-tools-skills text-center -mt-10">
-            <h2 className="text-xl font-semibold text-[#2c5364] mb-4">Other Tools / Technologies</h2>
-            <div className="skills-list grid grid-cols-2 sm:grid-cols-3 gap-6">
-              {/* Figma */}
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <SiFigma className="text-4xl mb-2 mx-auto text-[#F24E1E]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>Figma</span>
-              </div>
-
-              {/* Vercel */}
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <SiVercel className="text-4xl mb-2 mx-auto text-[#000000]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>Vercel</span>
-              </div>
-
-              {/* Heroku */}
-              <div className="skill text-white p-3 rounded-lg bg-gradient-to-r from-[#0f2027] via-[#203a43] to-[#2c5364] hover:scale-110 hover:shadow-lg transition ease-linear duration-400">
-                <SiHeroku className="text-4xl mb-2 mx-auto text-[#6762A6]" />
-                <span style={{ textShadow: '2px 2px 5px black' }}>Heroku</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
-    </>
-  );
-};
+    </div>
+  )
+}
 
-export default Skills;
+export default Skills
