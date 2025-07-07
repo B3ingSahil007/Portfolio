@@ -13,7 +13,7 @@ const About = () => {
     <>
       <div
         id="AboutMe"
-        className={`about flex flex-col items-center justify-center gap-8 py-20 sm:py-40 pt-0 sm:pt-20 px-4 sm:px-8 lg:px-16 transition-all duration-1000 ${
+        className={`about flex flex-col items-center justify-center gap-8 py-20 sm:py-40 pt-4 sm:pt-20 px-4 sm:px-8 lg:px-16 transition-all duration-1000 ${
           isDark ? "bg-gray-800" : "bg-gray-50"
         }`}
       >

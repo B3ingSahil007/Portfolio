@@ -10,7 +10,7 @@ const Title = ({ title }) => {
   return (
     <div ref={ref} className="contact-title text-center mb-12">
       <h1
-        className={`text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#1e40af] via-[#2563eb] to-[#3b82f6] bg-clip-text text-transparent mb-4 transition-all duration-1000 ${
+        className={`text-4xl lg:text-5xl py-3 font-bold bg-gradient-to-r from-[#1e40af] via-[#2563eb] to-[#3b82f6] bg-clip-text text-transparent mb-4 transition-all duration-1000 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >

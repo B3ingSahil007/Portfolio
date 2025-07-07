@@ -24,7 +24,7 @@ const Services = () => {
     };
 
     return (
-        <div id="Services" className={`services flex flex-col items-center justify-center py-20 transition-all duration-1000 ${isDark ? "bg-gray-800" : "bg-gray-50"}`}>
+        <div id="Services" className={`services flex flex-col items-center justify-center py-10 transition-all duration-1000 ${isDark ? "bg-gray-800" : "bg-gray-50"}`}>
             <Title title="Services" />
 
             <div ref={ref} className="services-container w-[90%] sm:w-[80%] lg:w-[80%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

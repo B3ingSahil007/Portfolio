@@ -65,7 +65,7 @@ const Navbar = () => {
 
       {/* Navigation Menu */}
       <ul
-        className={`nav-menu bg-white fixed lg:static top-0 left-0 h-full w-full lg:w-auto lg:flex flex-col lg:flex-row items-center gap-[30px] text-sm font-medium transition-all duration-500 ease-in-out z-50 ${
+        className={`nav-menu fixed lg:static top-0 left-0 h-full w-full lg:w-auto lg:flex flex-col lg:flex-row items-center gap-[30px] text-sm font-medium transition-all duration-500 ease-in-out z-50 ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 lg:transform-none ${
           isDark ? "bg-gray-900/95 text-gray-300 lg:bg-transparent" : "bg-white/95 text-gray-600 lg:bg-transparent"
@@ -93,7 +93,7 @@ const Navbar = () => {
         {["Home", "About Me", "Services", "My Work", "Experiences", "Contact Me"].map((menu, index) => (
           <AnchorLink key={menu} className="anchor-link" offset={50} href={`#${menu.replace(/\s+/g, "")}`}>
             <li
-              className={`cursor-pointer bg-white text-[#2563eb]/70 px-6 py-3 lg:py-0 lg:px-0 transition-all duration-300 hover:scale-110 active:scale-95    relative group ${
+              className={`cursor-pointer text-[#2563eb]/70 px-6 py-1 lg:py-0 lg:px-0 transition-all duration-300 hover:scale-110 active:scale-95 relative group ${
                 activeMenu === menu
                   ? `${isDark ? "text-blue-400" : "text-[#2563eb]"} font-semibold`
                   : `${isDark ? "hover:text-blue-400" : "hover:text-[#2563eb]"}`

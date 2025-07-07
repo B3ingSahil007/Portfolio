@@ -1,7 +1,7 @@
 "use client"
 
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaBootstrap, FaNodeJs, FaGitAlt, FaGithub, FaPython } from "react-icons/fa"
-import { SiMui, SiExpress, SiMongodb, SiTailwindcss, SiFirebase, SiFigma, SiVercel, SiHeroku } from "react-icons/si"
+import { SiMui, SiExpress, SiMongodb, SiTailwindcss, SiFirebase, SiFigma, SiVercel, SiHeroku, SiRender } from "react-icons/si"
 import { VscCode as VscVscode } from "react-icons/vsc"
 import Title from "./Title"
 import { useScrollAnimation } from "../hooks/use-scroll-animation"
@@ -20,6 +20,7 @@ const Skills = () => {
         { name: "JavaScript", icon: FaJs, color: "#F7DF1E" },
         { name: "ReactJS", icon: FaReact, color: "#61DAFB" },
         { name: "Bootstrap", icon: FaBootstrap, color: "#7952B3" },
+        { name: "React Native", icon: FaReact, color: "#61DAFB" },
         { name: "Material-UI", icon: SiMui, color: "#007FFF" },
         { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
       ],
@@ -48,12 +49,13 @@ const Skills = () => {
         { name: "Figma", icon: SiFigma, color: "#F24E1E" },
         { name: "Vercel", icon: SiVercel, color: "#000000" },
         { name: "Heroku", icon: SiHeroku, color: "#6762A6" },
+        { name: "Render", icon: SiRender, color: "#8a05ff" },
       ],
     },
   ]
 
   return (
-    <div className="skills py-20">
+    <div className="skills py-10">
       <Title title="My Skills" />
 
       <div ref={ref} className="skills-categories flex flex-wrap justify-center gap-16">
@@ -74,10 +76,10 @@ const Skills = () => {
                 return (
                   <div
                     key={skill.name}
-                    className={`skill border p-4 rounded-xl transition-all duration-500 hover:scale-110 hover:shadow-xl group cursor-pointer ${
+                    className={`skill border shadow-lg p-4 rounded-xl transition-all duration-500 hover:scale-110 hover:shadow-xl group cursor-pointer ${
                       isDark
-                        ? "bg-gray-800 border-gray-700 text-gray-300 hover:bg-gradient-to-br hover:from-[#2563eb] hover:to-[#3b82f6]"
-                        : "bg-white border-gray-200 text-gray-700 hover:bg-gradient-to-br hover:from-[#2563eb] hover:to-[#3b82f6]"
+                        ? "bg-gray-800 border-gray-700 text-gray-300 hover:bg-gradient-to-br hover:from-[#92b5ff] hover:to-[#3b82f6]"
+                        : "bg-white border-gray-200 text-gray-700 hover:bg-gradient-to-br hover:from-[#9dbcff] hover:to-[#3b82f6]"
                     } hover:text-white`}
                     style={{
                       animationDelay: `${categoryIndex * 200 + skillIndex * 100}ms`,

@@ -32,7 +32,7 @@ const MyWork = () => {
   return (
     <div
       id="MyWork"
-      className={`work flex flex-col items-center justify-center py-20 transition-all duration-1000 ${
+      className={`work flex flex-col items-center justify-center py-10 transition-all duration-1000 ${
         isDark ? "bg-gray-900" : "bg-white"
       }`}
     >

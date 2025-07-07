@@ -12,7 +12,7 @@ const Experiences = () => {
   return (
     <div
       id="Experiences"
-      className={`experience-section flex flex-col items-center justify-center py-20 transition-all duration-1000 ${
+      className={`experience-section flex flex-col items-center justify-center py-10 transition-all duration-1000 ${
         isDark ? "bg-gray-800" : "bg-gray-50"
       }`}
     >
