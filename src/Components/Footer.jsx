@@ -51,7 +51,7 @@ const Footer = () => {
 
           {/* Center Section: Links */}
           <ul
-            className={`footer-bottom-middle flex flex-wrap justify-center md:justify-start items-center gap-6 text-sm font-medium transition-all duration-300 ${
+            className={`footer-bottom-middle flex flex-wrap justify-center md:justify-start items-center gap-3 text-sm font-medium transition-all duration-300 ${
               isDark ? "text-gray-400" : "text-blue-100"
             }`}
           >

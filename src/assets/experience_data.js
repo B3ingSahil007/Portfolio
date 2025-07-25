@@ -21,6 +21,12 @@ const Experience_Data = [
         e_time: "January 2024 - April 2024",
         s_desc: "The internship at Tech Nishal provided an opportunity to build robust web applications, focusing on front-end, React JS development. Key responsibilities included implementing user-friendly interfaces, debugging applications, and working on team-oriented projects. Contributed to the development of Fashion Frenzy, an ecommerce app designed to connect fashion enthusiasts with sellers. "
     },
+    {
+        e_name: "React Js Developer",
+        e_company: "SNM TechCraft Innovation",
+        e_time: "April 2025 - Present",
+        s_desc: "As a React JS Developer, I focus on building scalable, high-performance web applications with clean, responsive, and user-friendly interfaces. My responsibilities include developing reusable components, efficiently managing application state, and ensuring seamless cross-browser compatibility. I’ve contributed significantly to the development of Nico-Industrial and the Zzazo School Application, delivering enhanced user experiences, optimized performance, and visually engaging UIs."
+    },
 ];
 
 export default Experience_Data.reverse();
