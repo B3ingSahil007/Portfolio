@@ -55,7 +55,7 @@ const Contact = () => {
   return (
     <div
       id="ContactMe"
-      className={`contact-section flex flex-col items-center justify-center py-10 transition-all duration-1000 ${
+      className={`contact-section flex flex-col w-[100%] lg:w-[100%] items-center justify-center py-10 transition-all duration-1000 ${
         isDark ? "bg-gray-900" : "bg-white"
       }`}
     >

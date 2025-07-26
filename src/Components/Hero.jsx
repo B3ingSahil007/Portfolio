@@ -9,7 +9,7 @@ import { useParallax } from "../hooks/use-scroll-animation"
 // Separate Typewriter Component to prevent unnecessary re-renders
 const TypewriterEffect = memo(() => (
   <Typewriter
-    words={["Frontend Developer", "MERN Stack Developer", "Software Developer", "Web Designer"]}
+    words={["Frontend Developer", "MERN Stack Developer", "React Native Developer", "Software Developer", "Web Designer"]}
     loop={true}
     cursor
     cursorStyle="|"
