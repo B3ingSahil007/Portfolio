@@ -3,7 +3,6 @@
 import { useEffect } from "react"
 import { ThemeProvider, useTheme } from "./Context/theme-context"
 import LoadingScreen from "./Components/loading-screen"
-import ThemeToggle from "./Components/theme-toggle"
 import Navbar from "./Components/Navbar"
 import Hero from "./Components/Hero"
 import About from "./Components/About"
@@ -12,6 +11,7 @@ import MyWork from "./Components/MyWork"
 import Experiences from "./Components/Experiences"
 import Contact from "./Components/Contact"
 import Footer from "./Components/Footer"
+import CustomCursor from "./Components/CustomCursor"
 
 const AppContent = () => {
   const { isLoading, isDark } = useTheme()
@@ -40,10 +40,12 @@ const AppContent = () => {
   }
 
   return (
-    <div className={`min-h-screen transition-all duration-1000 ${isDark ? "bg-gray-900" : "bg-white"}`}>
+    <div className={`min-h-screen transition-all duration-1000 bg-tech-grid ${isDark ? "bg-gray-950" : "bg-white text-gray-900"}`}>
+      <div className="noise-overlay" />
+      <CustomCursor />
       <Navbar />
       <main>
-        <ThemeToggle />
+
         <Hero />
         <About />
         <Services />

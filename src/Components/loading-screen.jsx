@@ -7,9 +7,8 @@ const LoadingScreen = () => {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-500 ${
-        isDark ? "bg-gray-900" : "bg-white"
-      }`}
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-500 ${isDark ? "bg-gray-900" : "bg-white"
+        }`}
     >
       <div className="text-center">
         {/* Animated Logo */}

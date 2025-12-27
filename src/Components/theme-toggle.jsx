@@ -1,35 +1,54 @@
-"use client"
-
 import { useTheme } from "../Context/theme-context"
-import { MdLightMode, MdDarkMode } from "react-icons/md"
+import { Sun, Moon, Zap } from "lucide-react"
 
-const ThemeToggle = () => {
-  const { isDark, toggleTheme } = useTheme()
+const ThemeToggle = ({ className = "" }) => {
+    const { isDark, toggleTheme } = useTheme()
 
-  return (
-    <button
-      onClick={toggleTheme}
-      className={`fixed top-2 sm:mr-0 mr-10 sm:top-4 right-4 z-40 p-2 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 ${
-        isDark
-          ? "bg-gray-800 text-yellow-400 hover:bg-gray-700 shadow-lg shadow-gray-900/50"
-          : "bg-white text-gray-700 hover:bg-gray-50 shadow-lg shadow-gray-200/50"
-      } border ${isDark ? "border-gray-700" : "border-gray-200"}`}
-      aria-label="Toggle theme"
-    >
-      <div className="relative top-1 -right-1 w-6 h-6">
-        <MdLightMode
-          className={`absolute inset-0 transition-all duration-300 ${
-            isDark ? "opacity-0 rotate-180 scale-0" : "opacity-100 rotate-0 scale-100"
-          }`}
-        />
-        <MdDarkMode
-          className={`absolute inset-0 transition-all duration-300 ${
-            isDark ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-180 scale-0"
-          }`}
-        />
-      </div>
-    </button>
-  )
+    return (
+        <button
+            onClick={toggleTheme}
+            className={`
+                relative group w-12 h-12 flex items-center justify-center
+                bg-black/80 backdrop-blur-md
+                border border-cyan-500/30
+                clip-cyber-sm
+                transition-all duration-300
+                hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)]
+                active:scale-95
+                ${className}
+            `}
+            aria-label="Toggle theme"
+        >
+            {/* Holographic Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+            {/* Scanning Line */}
+            <div className="absolute inset-0 overflow-hidden rounded-none clip-cyber-sm">
+                <div className="w-full h-[2px] bg-cyan-400/50 absolute top-0 -translate-y-full group-hover:animate-[scan_1.5s_linear_infinite]" />
+            </div>
+
+            {/* Corner Brackets */}
+            <div className="absolute top-0.5 left-0.5 w-1.5 h-1.5 border-t border-l border-cyan-500/70" />
+            <div className="absolute top-0.5 right-0.5 w-1.5 h-1.5 border-t border-r border-cyan-500/70" />
+            <div className="absolute bottom-0.5 left-0.5 w-1.5 h-1.5 border-b border-l border-cyan-500/70" />
+            <div className="absolute bottom-0.5 right-0.5 w-1.5 h-1.5 border-b border-r border-cyan-500/70" />
+
+            {/* Icon Container */}
+            <div className="relative z-10 transition-all duration-500 group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
+                {isDark ? (
+                    <div className="relative">
+                        <Moon className="w-5 h-5 text-cyan-400 fill-cyan-400/20" />
+                        <Zap className="w-2.5 h-2.5 text-yellow-400 absolute -top-1 -right-1 animate-pulse" />
+                    </div>
+                ) : (
+                    <div className="relative">
+                        <Sun className="w-5 h-5 text-amber-400 fill-amber-400/20" />
+                        <div className="absolute inset-0 bg-amber-400/30 blur-[2px] -z-10" />
+                    </div>
+                )}
+            </div>
+        </button>
+    )
 }
 
 export default ThemeToggle

@@ -4,7 +4,9 @@ import { useState, useEffect, useRef } from "react"
 import AnchorLink from "react-anchor-link-smooth-scroll"
 import { MdOutlineMenu } from "react-icons/md"
 import { IoMdClose } from "react-icons/io"
+import { motion, AnimatePresence } from "framer-motion"
 import { useTheme } from "../Context/theme-context"
+import ThemeToggle from "./theme-toggle"
 
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState("Home")
@@ -16,7 +18,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      setIsScrolled(window.scrollY > 20)
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
@@ -24,7 +26,6 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Close menu if clicked outside of both menu and button
       if (
         isMobileMenuOpen &&
         mobileMenuRef.current &&
@@ -36,15 +37,10 @@ const Navbar = () => {
       }
     }
 
-    // Add event listener when menu is open
     if (isMobileMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside)
     }
-
-    // Cleanup
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
+    return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [isMobileMenuOpen])
 
   const handleMenuClick = (menu) => {
@@ -53,83 +49,142 @@ const Navbar = () => {
   }
 
   return (
-    <div
-      className={`navbar fixed top-0 left-0 right-0 transition-all duration-500 flex items-center justify-between py-[20px] px-[20px] lg:px-[100px] z-40 ${isScrolled
-        ? `${isDark ? "bg-gray-900/95" : "bg-white/95"} backdrop-blur-md shadow-xl ${isDark ? "border-gray-800" : "border-gray-200"} border-b`
-        : `${isDark ? "bg-gray-900/80" : "bg-white/80"} backdrop-blur-sm`
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-2 py-3 lg:px-12 ${isScrolled
+        ? "py-3"
+        : "py-6"
         }`}
     >
-      {/* Logo */}
-      <AnchorLink className="anchor-link" offset={50} href={`#Home`}>
-        <h1
-          className={`text-xl font-bold bg-gradient-to-r from-[#2563eb] to-[#3b82f6] bg-clip-text text-transparent cursor-pointer hover:scale-110 transition-all duration-300 animate-pulse hover:animate-none`}
-        >
-          Sahil Miyawala
-        </h1>
-      </AnchorLink>
+      <div className={`max-w-7xl mx-auto flex items-center justify-between px-8 py-4 transition-all duration-300 clip-hud ${isScrolled
+        ? `glass-effect shadow-lg ${isDark ? "bg-black/40 border-b border-blue-500/20" : "bg-white/40 border-b border-blue-500/10"}`
+        : "bg-transparent"
+        }`}>
+        {/* Logo */}
+        <AnchorLink className="anchor-link" offset={50} href={`#Home`}>
+          <motion.h1
+            whileHover={{ scale: 1.05 }}
+            className="text-2xl font-bold font-mono glitch-hover bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent cursor-pointer tracking-tighter"
+          >
+            {"<Sahil />"}
+          </motion.h1>
+        </AnchorLink>
 
-      {/* Mobile Menu Icon */}
-      <div
-        ref={menuButtonRef}
-        className={`menu-icon text-2xl lg:hidden cursor-pointer hover:scale-125 active:scale-95 transition-all duration-300 ${isDark ? "text-blue-400" : "text-[#2563eb]"
-          }`}
-        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-      >
-        <div className="relative w-6 h-6">
-          <MdOutlineMenu
-            className={`absolute inset-0 transition-all duration-300 ${isMobileMenuOpen ? "opacity-0 rotate-180 scale-0" : "opacity-100 rotate-0 scale-100"
-              }`}
-          />
-          <IoMdClose
-            className={`absolute inset-0 transition-all duration-300 ${isMobileMenuOpen ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-180 scale-0"
-              }`}
-          />
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex items-center gap-8">
+          {["Home", "About Me", "Services", "My Work", "Experiences", "Contact Me"].map((menu) => (
+            <AnchorLink key={menu} className="anchor-link" offset={50} href={`#${menu.replace(/\s+/g, "")}`}>
+              <li
+                onClick={() => handleMenuClick(menu)}
+                className={`relative cursor-pointer text-sm font-medium transition-all duration-300 hover:text-blue-500 ${activeMenu === menu
+                  ? (isDark ? "text-white" : "text-gray-900")
+                  : (isDark ? "text-gray-400" : "text-gray-600")
+                  }`}
+              >
+                {menu}
+                {activeMenu === menu && (
+                  <motion.span
+                    layoutId="underline"
+                    className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 rounded-full"
+                  />
+                )}
+              </li>
+            </AnchorLink>
+          ))}
+        </ul>
+
+        {/* Desktop Connect Button */}
+        <div className="hidden lg:flex items-center gap-6">
+          <ThemeToggle />
+          <AnchorLink className="anchor-link" offset={50} href={`#ContactMe`}>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative px-8 py-2.5 font-mono font-bold text-white bg-blue-600/10 border border-blue-500/50 hover:bg-blue-600/20 hover:border-blue-400 transition-all duration-300 clip-cyber-sm group overflow-hidden"
+            >
+              <span className="relative z-10 text-neon">Connect</span>
+              <div className="absolute inset-0 bg-blue-500/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+            </motion.button>
+          </AnchorLink>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <div
+          ref={menuButtonRef}
+          className={`lg:hidden text-2xl cursor-pointer ${isDark ? "text-white" : "text-gray-900"}`}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <IoMdClose /> : <MdOutlineMenu />}
         </div>
       </div>
 
-      {/* Overlay for outside clicks - Mobile Only */}
-      <div
-        className={`lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-        onClick={() => setIsMobileMenuOpen(false)}
-      />
-
-      {/* Navigation Menu */}
-      <ul
-        ref={mobileMenuRef}
-        className={`nav-menu fixed top-0 left-0 h-screen w-3/4 lg:w-[45%] lg:h-auto lg:static lg:flex flex-col lg:flex-row items-start lg:items-center gap-[30px] text-sm font-medium transition-all duration-300 ease-in-out z-50 ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } lg:translate-x-0 lg:transform-none ${isDark ? "bg-gray-900 text-gray-300 lg:bg-transparent" : "bg-white text-gray-600 lg:bg-transparent"
-          } pt-20 lg:pt-0 px-6 lg:px-0 shadow-2xl lg:shadow-none`}
-      >
-        {["Home", "About Me", "Services", "My Work", "Experiences", "Contact Me"].map((menu, index) => (
-          <AnchorLink key={menu} className="anchor-link w-full" offset={50} href={`#${menu.replace(/\s+/g, "")}`}>
-            <li
-              className={`cursor-pointer text-[#2563eb]/70 py-3 lg:py-0 transition-all duration-300 hover:scale-110 active:scale-95 relative group w-full ${activeMenu === menu
-                ? `${isDark ? "text-blue-400" : "text-[#2563eb]"} font-semibold`
-                : `${isDark ? "hover:text-blue-400" : "hover:text-[#2563eb]"}`
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+            />
+            <motion.div
+              ref={mobileMenuRef}
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className={`fixed top-0 right-0 h-full w-4/5 max-w-sm z-50 lg:hidden shadow-2xl p-8 flex flex-col gap-6 ${isDark ? "bg-gray-900" : "bg-white"
                 }`}
-              onClick={() => handleMenuClick(menu)}
-              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {menu}
-              <span
-                className={`absolute bottom-0 left-0 right-0 mx-auto w-0 h-0.5 bg-gradient-to-r from-[#2563eb] to-[#3b82f6] transition-all duration-300 group-hover:w-1/2 ${activeMenu === menu ? "w-full" : ""
-                  }`}
-              ></span>
-            </li>
-          </AnchorLink>
-        ))}
-      </ul>
+              <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center gap-4">
+                  <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent">Sahil</h1>
+                  <ThemeToggle />
+                </div>
+                <IoMdClose className="text-2xl cursor-pointer" onClick={() => setIsMobileMenuOpen(false)} />
+              </div>
+              <ul className="flex flex-col gap-4">
+                {["Home", "About Me", "Services", "My Work", "Experiences", "Contact Me"].map((menu) => (
+                  <AnchorLink key={menu} className="anchor-link" offset={50} href={`#${menu.replace(/\s+/g, "")}`}>
+                    <li
+                      onClick={() => handleMenuClick(menu)}
+                      className={`text-lg font-medium py-2 border-b border-white/5 ${activeMenu === menu ? "text-blue-500" : (isDark ? "text-gray-300" : "text-gray-600")
+                        }`}
+                    >
+                      {menu}
+                    </li>
+                  </AnchorLink>
+                ))}
+              </ul>
+              <AnchorLink className="anchor-link mt-auto" offset={50} href={`#ContactMe`}>
+                <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full py-3 bg-blue-600/10 border border-blue-500 text-blue-400 font-mono font-bold tracking-widest uppercase clip-cyber-sm hover:bg-blue-600 hover:text-white transition-all duration-300 group relative overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    INIT_CONNECTION
+                  </span>
+                  <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
 
-      {/* Connect Button */}
-      <div className="nav-connect hidden lg:block">
-        <AnchorLink className="anchor-link" offset={50} href={`#ContactMe`}>
-          <button className="bg-gradient-to-r from-[#2563eb] to-[#3b82f6] text-white py-[10px] px-[20px] rounded-full cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 hover:shadow-xl font-medium hover:from-[#1d4ed8] hover:to-[#2563eb]">
-            Connect With Me
-          </button>
-        </AnchorLink>
-      </div>
-    </div>
+                  {/* Decorative Corners */}
+                  <div className="absolute top-0 right-0 p-1">
+                    <div className="w-2 h-2 border-t border-r border-blue-400/50" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 p-1">
+                    <div className="w-2 h-2 border-b border-l border-blue-400/50" />
+                  </div>
+                </motion.button>
+
+              </AnchorLink>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   )
 }
 

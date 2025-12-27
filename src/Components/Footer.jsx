@@ -2,77 +2,75 @@
 
 import AnchorLink from "react-anchor-link-smooth-scroll"
 import { useTheme } from "../Context/theme-context"
+import { FaTerminal } from "react-icons/fa"
 
 const Footer = () => {
   const { isDark } = useTheme()
 
+  const currentYear = new Date().getFullYear()
+
   return (
-    <div
-      className={`footer py-12 transition-all duration-1000 ${
-        isDark
-          ? "bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-300"
-          : "bg-gradient-to-r from-[#1e40af] via-[#2563eb] to-[#3b82f6] text-white"
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        {/* Footer Top */}
-        <div className="footer-top flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 mb-8">
-          {/* Left Section */}
-          <div className="footer-top-left flex flex-col md:flex-row gap-6 items-center md:items-start">
-            <h2 className="text-3xl font-bold text-center hover:scale-110 transition-all duration-300 cursor-pointer animate-pulse hover:animate-none">
-              Sahil Miyawala
+    <div className={`
+      relative border-t-2 py-12 overflow-hidden
+      ${isDark ? "bg-black border-cyan-900/30 text-gray-400" : "bg-gray-900 border-blue-500/30 text-gray-300"}
+    `}>
+      {/* Matrix Background */}
+      <div className="absolute inset-0 bg-tech-grid opacity-5 pointer-events-none" />
+
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
+
+          {/* Brand Identify */}
+          <div className="space-y-4 max-w-md">
+            <h2 className="text-3xl font-mono font-bold text-white flex items-center gap-3">
+              <FaTerminal className="text-cyan-500 animate-pulse" />
+              <span>&lt;Sahil Miyawala /&gt;</span>
             </h2>
-            <p
-              className={`text-sm md:w-[60%] text-center md:text-left leading-relaxed transition-all duration-300 ${
-                isDark ? "text-gray-400" : "text-blue-100"
-              }`}
-            >
-              I am a frontend developer from Ahmedabad, Gujarat, India, with experience in building modern web
-              applications. Skilled in React.js, JavaScript, and the MERN stack, I have worked on projects like Invoxify
-              and Fashion Frenzy, delivering seamless user experiences.
+            <p className="font-mono text-sm leading-relaxed text-gray-500">
+               // SYSTEM_STATUS: ONLINE <br />
+               // CURRENT_OBJECTIVE: DEPLOYING_EXCELLENCE
             </p>
           </div>
+
+          {/* Quick Nav */}
+          <div className="flex flex-wrap gap-8 text-sm font-mono tracking-wider">
+            <Navlink href="#Hero" label="HOME_ROOT" />
+            <Navlink href="#AboutMe" label="IDENTITY" />
+            <Navlink href="#MyWork" label="ARCHIVES" />
+            <Navlink href="#ContactMe" label="UPLINK" />
+          </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div
-          className={`footer-bottom flex flex-col md:flex-row justify-between items-center border-t pt-6 ${
-            isDark ? "border-gray-700" : "border-blue-400"
-          }`}
-        >
-          {/* Left Section: Copyright */}
-          <div
-            className={`footer-bottom-left text-sm text-center md:text-left mb-4 md:mb-0 transition-all duration-300 ${
-              isDark ? "text-gray-400" : "text-blue-100"
-            }`}
-          >
-            &copy; {new Date().getFullYear()} Sahil Miyawala. All Rights Reserved.
+        {/* Divider */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-cyan-900/50 to-transparent mb-8" />
+
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-gray-600">
+          <div>
+            <span className="text-cyan-800">/* </span>
+            &copy; {currentYear} Sahil Miyawala. SECURED.
+            <span className="text-cyan-800"> */</span>
           </div>
 
-          {/* Center Section: Links */}
-          <ul
-            className={`footer-bottom-middle flex flex-wrap justify-center md:justify-start items-center gap-3 text-sm font-medium transition-all duration-300 ${
-              isDark ? "text-gray-400" : "text-blue-100"
-            }`}
-          >
-            {["Terms Of Services", "Privacy Policy"].map((item) => (
-              <li
-                key={item}
-                className="cursor-pointer hover:text-white transition-all duration-200 hover:scale-110 active:scale-95"
-              >
-                {item}
-              </li>
-            ))}
-            <AnchorLink className="anchor-link" offset={50} href={`#ContactMe`}>
-              <li className="cursor-pointer hover:text-white transition-all duration-200 hover:scale-110 active:scale-95">
-                Connect With Me
-              </li>
-            </AnchorLink>
-          </ul>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-cyan-400 transition-colors">PRIVACY_PROTOCOL</a>
+            <a href="#" className="hover:text-cyan-400 transition-colors">TERMS_OF_SERVICE</a>
+          </div>
         </div>
+
       </div>
     </div>
   )
 }
+
+const Navlink = ({ href, label }) => (
+  <AnchorLink
+    href={href}
+    className="relative group hover:text-cyan-400 transition-colors cursor-pointer"
+  >
+    <span className="text-cyan-800 mr-1 opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+    {label}
+  </AnchorLink>
+)
 
 export default Footer

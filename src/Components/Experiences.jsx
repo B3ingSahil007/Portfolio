@@ -1,79 +1,85 @@
 "use client"
 
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef } from "react"
 import Experience_Data from "../assets/experience_data"
 import Title from "./Title"
-import { useScrollAnimation } from "../hooks/use-scroll-animation"
 import { useTheme } from "../Context/theme-context"
 
 const Experiences = () => {
-  const [ref, isVisible] = useScrollAnimation(0.2)
   const { isDark } = useTheme()
+  const containerRef = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  })
+
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
 
   return (
-    <div
-      id="Experiences"
-      className={`experience-section flex flex-col items-center justify-center py-10 transition-all duration-1000 ${
-        isDark ? "bg-gray-800" : "bg-gray-50"
-      }`}
-    >
-      <Title title="My Experience" />
+    <section id="Experiences" className={`py-24 px-6 lg:px-12 ${isDark ? "bg-[#030712]" : "bg-gray-50"}`}>
+      <div className="max-w-7xl mx-auto">
+        <Title title="Experience" />
 
-      <div
-        ref={ref}
-        className="experience-list w-[90%] sm:w-[85%] lg:w-[80%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8"
-      >
-        {Experience_Data.map((experience, index) => (
-          <div
-            key={index}
-            className={`experience-card border p-6 rounded-2xl shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl group cursor-pointer ${
-              isDark
-                ? "bg-gray-900 border-gray-700 hover:bg-gradient-to-br hover:from-[#2563eb] hover:to-[#3b82f6]"
-                : "bg-white border-gray-200 hover:bg-gradient-to-br hover:from-[#2563eb] hover:to-[#3b82f6]"
-            } hover:text-white ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-            style={{ transitionDelay: `${index * 150}ms` }}
-          >
-            <h3
-              className={`text-xl sm:text-2xl font-semibold transition-all duration-300 mb-3 group-hover:text-white group-hover:animate-pulse ${
-                isDark ? "text-blue-400" : "text-[#2563eb]"
-              }`}
-            >
-              {experience.e_name}
-            </h3>
-
-            <div className="mb-4 flex flex-wrap gap-2">
-              <span
-                className={`text-sm font-medium px-3 py-1 rounded-full transition-all duration-300 ${
-                  isDark
-                    ? "text-gray-400 bg-gray-800 group-hover:bg-white/20 group-hover:text-gray-200"
-                    : "text-gray-500 bg-gray-100 group-hover:bg-white/20 group-hover:text-gray-200"
-                }`}
-              >
-                {experience.e_time}
-              </span>
-              {experience.e_company && (
-                <span
-                  className={`text-sm font-medium px-3 py-1 rounded-full transition-all duration-300 ${
-                    isDark
-                      ? "text-gray-400 bg-gray-800 group-hover:bg-white/20 group-hover:text-gray-200"
-                      : "text-gray-500 bg-gray-100 group-hover:bg-white/20 group-hover:text-gray-200"
-                  }`}
-                >
-                  <strong>Company:</strong> {experience.e_company}
-                </span>
-              )}
-            </div>
-
-            <p
-              className={`text-base leading-relaxed transition-all duration-300 group-hover:text-gray-100 ${
-                isDark ? "text-gray-400" : "text-gray-700"
-              }`}
-            >
-              {experience.s_desc || "Description coming soon..."}
-            </p>
+        <div ref={containerRef} className="mt-20 relative">
+          {/* Animated Timeline Line */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-blue-600/10 hidden md:block">
+            <motion.div
+              style={{ height: lineHeight }}
+              className="w-full bg-blue-600 origin-top shadow-[0_0_15px_rgba(37,99,235,0.5)]"
+            />
           </div>
-        ))}
+
+          <div className="space-y-12 md:space-y-24">
+            {Experience_Data.map((exp, index) => {
+              const isEven = index % 2 === 0
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  className={`relative flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center`}
+                >
+                  {/* Timeline Dot */}
+                  <div className="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full z-10 border-4 border-[#030712] hidden md:block" />
+
+                  {/* Content Card */}
+                  <div className="w-full md:w-[45%]">
+                    <div className={`p-8 clip-hud glass-card transition-all duration-500 hover:scale-[1.02] border relative group ${isDark ? "bg-white/5 border-white/10" : "bg-white border-black/5 shadow-xl"
+                      }`}>
+                      {/* Neon Border */}
+                      <div className="neon-border clip-hud text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                      <div className="flex justify-between items-start mb-4 relative z-10">
+                        <div>
+                          <h3 className={`text-2xl font-bold font-mono ${isDark ? "text-white" : "text-gray-900"}`}>
+                            {exp.e_name}
+                          </h3>
+                          <p className="text-blue-600 font-medium font-mono">{exp.e_company}</p>
+                        </div>
+                        <span className={`text-xs font-bold px-3 py-1 clip-cyber-sm uppercase tracking-wider ${isDark ? "bg-blue-600/10 text-blue-400" : "bg-blue-50 text-blue-600"
+                          }`}>
+                          {exp.e_time}
+                        </span>
+                      </div>
+                      <p className={`text-base leading-relaxed relative z-10 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+                        {exp.s_desc || "Lead developer focusing on architectural design and high-performance frontend implementation."}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Spacer for empty side */}
+                  <div className="hidden md:block w-[45%]" />
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 

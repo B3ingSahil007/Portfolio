@@ -2,21 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg-dark: #030712;
+  --card-dark: #111827;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  /* VT323 is often smaller, bumping size slightly */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+code,
+.font-mono {
+  font-family: 'VT323', monospace;
+}
+
+/* Noise Texture Overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-gray-800;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-400 dark:bg-gray-600 rounded-full;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-500 dark:bg-gray-500;
+  @apply bg-blue-600/20 hover:bg-blue-600/40 rounded-full transition-all duration-300;
 }
 
 /* Smooth scrolling */
@@ -30,6 +64,7 @@ html {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -41,6 +76,7 @@ html {
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -52,6 +88,7 @@ html {
     opacity: 0;
     transform: translateX(30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -59,10 +96,12 @@ html {
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -86,10 +125,12 @@ html {
 
 /* Loading animation */
 @keyframes loadingPulse {
+
   0%,
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
@@ -102,6 +143,173 @@ html {
 /* Focus styles */
 .focus-visible:focus {
   @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+}
+
+/* Scanning Light Effect */
+@keyframes scan {
+  from {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+
+  to {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+.scanning-light {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent);
+  animation: scan 3s infinite;
+}
+
+/* Ambient Blobs */
+@keyframes blob-float {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+.ambient-blob {
+  position: absolute;
+  filter: blur(80px);
+  opacity: 0.15;
+  z-index: 0;
+  animation: blob-float 15s infinite ease-in-out;
+  transition: background-color 0.8s ease;
+}
+
+/* Cyber-Module Clipping */
+.clip-cyber {
+  clip-path: polygon(0% 15px, 15px 0%,
+      100% 0%, 100% calc(100% - 15px),
+      calc(100% - 15px) 100%,
+      0% 100%);
+}
+
+.clip-cyber-lg {
+  clip-path: polygon(0% 40px, 40px 0%,
+      100% 0%, 100% calc(100% - 40px),
+      calc(100% - 40px) 100%,
+      0% 100%);
+}
+
+/* Neon Data Ribbon Pulse */
+@keyframes neon-flow {
+  0% {
+    filter: drop-shadow(0 0 2px currentColor) brightness(1);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 10px currentColor) brightness(1.5);
+  }
+
+  100% {
+    filter: drop-shadow(0 0 2px currentColor) brightness(1);
+  }
+}
+
+.neon-border {
+  position: absolute;
+  inset: 0;
+  border: 1px solid currentColor;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.group:hover .neon-border {
+  opacity: 1;
+  animation: neon-flow 2s infinite ease-in-out;
+}
+
+/* Corner Brackets */
+.corner-bracket {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: currentColor;
+  opacity: 0.5;
+}
+
+/* Holographic Sheen Effect */
+.holographic-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.05) 40%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 60%,
+      transparent 80%);
+  background-size: 200% 200%;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Spotlight Tracking */
+.spotlight-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px circle at var(--x) var(--y),
+      rgba(255, 255, 255, 0.05),
+      transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Floating Animation */
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(1deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s infinite ease-in-out;
+}
+
+/* Glassmorphism Utilities */
+.glass-effect {
+  @apply backdrop-blur-md border border-white/10;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.glass-card {
+  @apply backdrop-blur-lg border border-white/5 shadow-2xl;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Dark mode overrides */
+.dark body {
+  @apply bg-gray-950 text-gray-100;
+}
+
+/* Custom transitions */
+.transition-slow {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Dark mode transitions */
@@ -139,4 +347,148 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                       STEALTH-TECH GLOBAL UTILITIES                        */
+/* -------------------------------------------------------------------------- */
+
+/* Cyber Clip Paths */
+.clip-cyber-sm {
+  clip-path: polygon(0% 10px, 10px 0%,
+      100% 0%, 100% calc(100% - 10px),
+      calc(100% - 10px) 100%,
+      0% 100%);
+}
+
+.clip-hud {
+  clip-path: polygon(0% 0%,
+      10px 0%,
+      20px 10px,
+      calc(100% - 20px) 10px,
+      calc(100% - 10px) 0%,
+      100% 0%,
+      100% 100%,
+      calc(100% - 10px) 100%,
+      calc(100% - 20px) calc(100% - 10px),
+      20px calc(100% - 10px),
+      10px 100%,
+      0% 100%);
+}
+
+/* Glitch Animation */
+@keyframes glitch {
+  0% {
+    transform: translate(0)
+  }
+
+  20% {
+    transform: translate(-2px, 2px)
+  }
+
+  40% {
+    transform: translate(-2px, -2px)
+  }
+
+  60% {
+    transform: translate(2px, 2px)
+  }
+
+  80% {
+    transform: translate(2px, -2px)
+  }
+
+  100% {
+    transform: translate(0)
+  }
+}
+
+.glitch-hover:hover {
+  animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+  color: var(--primary);
+  text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff;
+}
+
+/* Neon Text Glow */
+.text-neon {
+  text-shadow: 0 0 2px currentColor, 0 0 0px currentColor;
+}
+
+.text-neon-hover:hover {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
+}
+
+/* Tech Pattern Background (Optional Subtlety) */
+.bg-tech-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Theme Toggle Animations */
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 200%;
+  }
+}
+
+.animate-shine {
+  animation: shine 1s;
+}
+
+@keyframes spin-slow-once {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+.animate-spin-slow-once {
+  animation: spin-slow-once 0.5s ease-out;
+}
+
+@keyframes pulse-slow-once {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-pulse-slow-once {
+  animation: pulse-slow-once 0.5s ease-out;
+}
+
+/* About Section Specific Animations */
+@keyframes reverse-spin {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-reverse-spin {
+  animation: reverse-spin 10s linear infinite;
+}
+
+.animate-scan {
+  animation: scan 2s linear infinite;
 }

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md"
-import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa"
+import { FaFacebook, FaInstagram, FaLinkedin, FaGithub, FaWifi } from "react-icons/fa"
 import { toast } from "react-toastify"
 import Title from "./Title"
 import { useScrollAnimation } from "../hooks/use-scroll-animation"
@@ -34,7 +34,6 @@ const Contact = () => {
       }).then((res) => res.json())
 
       if (res.success) {
-        console.log("Success", res)
         toast.success("E-Mail Sent Successfully")
         event.target.reset()
       }
@@ -55,143 +54,162 @@ const Contact = () => {
   return (
     <div
       id="ContactMe"
-      className={`contact-section flex flex-col w-[100%] lg:w-[100%] items-center justify-center py-10 transition-all duration-1000 ${
-        isDark ? "bg-gray-900" : "bg-white"
-      }`}
+      className={`relative py-24 px-4 sm:px-6 lg:px-12 overflow-hidden ${isDark ? "bg-[#030712]" : "bg-gray-50"}`}
     >
-      <Title title="Contact Me" />
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-tech-grid opacity-10 pointer-events-none" />
 
-      <div ref={ref} className="contact-content w-[90%] lg:w-[80%] grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Contact Details */}
-        <div
-          className={`contact-details flex flex-col items-center lg:items-start p-4 sm:p-0 rounded-2xl transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-          } ${isDark ? "bg-gray-800" : "bg-gray-50"}`}
-        >
-          <h2 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#2563eb] to-[#3b82f6] bg-clip-text text-transparent mb-6 animate-pulse">
-            Let's Talk
-          </h2>
+      <Title title="Establish Connection" />
 
-          <p
-            className={`max-w-lg text-center lg:text-left mb-4 leading-relaxed ${
-              isDark ? "text-gray-400" : "text-gray-600"
-            }`}
-          >
-            Feel free to reach out to me for collaborations, opportunities, or just a friendly chat!
-          </p>
+      <div ref={ref} className="mt-16 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
 
-          <p
-            className={`max-w-lg text-center lg:text-left mb-8 leading-relaxed ${
-              isDark ? "text-gray-400" : "text-gray-600"
-            }`}
-          >
-            I'm currently available to take on new projects, so feel free to send me a message about anything you'd like
-            me to work on. You can contact me anytime.
-          </p>
+        {/* Left: Signal Station */}
+        <div className={`space-y-8 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"} transition-all duration-1000`}>
+          <div className="relative">
+            <h2 className={`text-4xl lg:text-5xl font-mono font-bold mb-6 ${isDark ? "text-white" : "text-gray-900"}`}>
+              Let's <span className="text-cyan-500 glitch-hover">Talk</span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 mb-8" />
 
-          <div className="space-y-4 mb-8">
+            <p className={`font-mono text-lg leading-relaxed mb-8 border-l-2 border-cyan-500/30 pl-6 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+              Ready to initiate protocol: COLLABORATION. <br />
+              Signal strength is strong. Transmit your project parameters or just send a ping.
+            </p>
+          </div>
+
+          <div className="space-y-6">
             {[
-              { icon: MdEmail, label: "Email", value: "chhipasahil163@gmail.com" },
-              { icon: MdPhone, label: "Phone", value: "+91 9638473047" },
-              { icon: MdLocationOn, label: "Location", value: "Gujarat, India" },
+              { icon: MdEmail, label: "Quantum Mail", value: "chhipasahil163@gmail.com" },
+              { icon: MdPhone, label: "Secure Line", value: "+91 9638473047" },
+              { icon: MdLocationOn, label: "Base Station", value: "Gujarat, India" },
             ].map((contact, index) => (
               <div
                 key={contact.label}
-                className={`flex items-center gap-3 transition-all duration-500 hover:scale-105 ${
-                  isDark ? "text-gray-300" : "text-gray-700"
-                }`}
-                style={{ animationDelay: `${index * 100}ms` }}
+                className={`group flex items-center gap-6 p-4 border border-transparent hover:border-cyan-500/30 bg-black/5 clip-cyber-sm transition-all duration-300 hover:translate-x-2 ${isDark ? "bg-white/5" : "bg-white"}`}
               >
-                <div className="bg-gradient-to-r from-[#2563eb] to-[#3b82f6] p-2 rounded-full">
-                  <contact.icon className="text-white text-xl" />
+                <div className="w-12 h-12 flex items-center justify-center bg-cyan-500/10 text-cyan-400 clipped-box group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+                  <contact.icon size={24} />
                 </div>
                 <div>
-                  <p className="font-medium">{contact.label}</p>
-                  <p className={isDark ? "text-gray-400" : "text-gray-600"}>{contact.value}</p>
+                  <p className="text-xs font-mono text-cyan-600 uppercase tracking-widest mb-1">{contact.label}</p>
+                  <p className={`font-medium font-mono ${isDark ? "text-gray-300" : "text-gray-800"}`}>{contact.value}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="flex gap-4">
-            {socialLinks.map((social, index) => (
-              <a
-                key={social.label}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`p-3 rounded-full transition-all duration-300 hover:scale-125 active:scale-95 ${
-                  isDark
-                    ? "bg-gray-700 text-gray-400 hover:bg-gradient-to-r hover:from-[#2563eb] hover:to-[#3b82f6] hover:text-white"
-                    : "bg-gray-200 text-gray-600 hover:bg-gradient-to-r hover:from-[#2563eb] hover:to-[#3b82f6] hover:text-white"
-                }`}
-                style={{ animationDelay: `${index * 100}ms` }}
-                aria-label={social.label}
-              >
-                <social.icon size={20} />
-              </a>
-            ))}
+          <div className="pt-8">
+            <p className="text-sm font-mono text-cyan-500/60 mb-4 flex items-center gap-2">
+              <FaWifi className="animate-pulse" /> NETWORK NODES
+            </p>
+            <div className="flex gap-4">
+              {socialLinks.map((social, idx) => (
+                <a
+                  key={idx}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 flex items-center justify-center border border-cyan-500/30 text-cyan-500 hover:bg-cyan-500 hover:text-white hover:border-cyan-500 transition-all duration-300 clip-cyber-sm hover:scale-110"
+                  aria-label={social.label}
+                >
+                  <social.icon size={20} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Contact Form */}
-        <div
-          className={`contact-form border p-4 rounded-2xl shadow-lg transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
-          } ${isDark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"}`}
-        >
-          <h3 className={`text-2xl font-semibold mb-6 ${isDark ? "text-blue-400" : "text-[#2563eb]"}`}>
-            Send Me A Message
-          </h3>
+        {/* Right: Transmission Terminal */}
+        <div className={`relative ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"} transition-all duration-1000 delay-300`}>
 
-          <form onSubmit={onSubmit} className="flex flex-col gap-6">
-            {[
-              { name: "name", type: "text", placeholder: "Your Name" },
-              { name: "email", type: "email", placeholder: "Your Email" },
-            ].map((field) => (
-              <input
-                key={field.name}
-                type={field.type}
-                name={field.name}
-                placeholder={field.placeholder}
-                className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent transition-all duration-300 hover:scale-105 focus:scale-105 ${
-                  isDark
-                    ? "bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400"
-                    : "bg-gray-50 border-gray-200 text-gray-800 placeholder-gray-500"
-                }`}
-                required
-                disabled={isSubmitting}
-              />
-            ))}
+          <div className={`
+             relative p-8 clip-hud border 
+             ${isDark ? "bg-black/40 border-cyan-500/30" : "bg-white border-gray-200"}
+          `}>
+            {/* Terminal Header */}
+            <div className="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+              <h3 className="text-xl font-mono font-bold text-cyan-400 flex items-center gap-2">
+                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                TRANSMISSION_UPLINK
+              </h3>
+              <span className="text-xs font-mono text-gray-500">SECURE_V.2.0</span>
+            </div>
 
-            <textarea
-              name="message"
-              placeholder="Your Message"
-              rows="5"
-              className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent transition-all duration-300 resize-none hover:scale-105 focus:scale-105 ${
-                isDark
-                  ? "bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400"
-                  : "bg-gray-50 border-gray-200 text-gray-800 placeholder-gray-500"
-              }`}
-              required
-              disabled={isSubmitting}
-            ></textarea>
+            <form onSubmit={onSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-xs font-mono text-cyan-500/70 ml-2">AGENT_ID (NAME)</label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  className={`
+                      w-full bg-black/20 border-b-2 border-white/10 px-4 py-3 font-mono
+                      focus:border-cyan-500 focus:bg-cyan-500/5 transition-all outline-none
+                      ${isDark ? "text-white" : "text-gray-900"}
+                    `}
+                  placeholder="ENTER IDENTIFIER_"
+                />
+              </div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="bg-gradient-to-r from-[#2563eb] to-[#3b82f6] text-white px-8 py-3 rounded-xl font-medium shadow-lg hover:scale-105 active:scale-95 transform transition-all duration-300 hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
-            >
-              {isSubmitting ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                  Sending...
-                </>
-              ) : (
-                "Send Message"
-              )}
-            </button>
-          </form>
+              <div className="space-y-2">
+                <label className="text-xs font-mono text-cyan-500/70 ml-2">COMMS_CHANNEL (EMAIL)</label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className={`
+                      w-full bg-black/20 border-b-2 border-white/10 px-4 py-3 font-mono
+                      focus:border-cyan-500 focus:bg-cyan-500/5 transition-all outline-none
+                      ${isDark ? "text-white" : "text-gray-900"}
+                    `}
+                  placeholder="ENTER FREQUENCY_"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs font-mono text-cyan-500/70 ml-2">DATA_PACKET (MESSAGE)</label>
+                <textarea
+                  name="message"
+                  required
+                  rows="4"
+                  className={`
+                      w-full bg-black/20 border-b-2 border-white/10 px-4 py-3 font-mono
+                      focus:border-cyan-500 focus:bg-cyan-500/5 transition-all outline-none resize-none
+                      ${isDark ? "text-white" : "text-gray-900"}
+                    `}
+                  placeholder="INPUT PARAMETERS_..."
+                ></textarea>
+              </div>
+
+              <div className="pt-4">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`
+                      w-full py-4 bg-cyan-600/10 border border-cyan-500 text-cyan-400 
+                      font-mono font-bold tracking-widest uppercase clip-cyber-sm
+                      hover:bg-cyan-500 hover:text-black transition-all duration-300
+                      disabled:opacity-50 disabled:cursor-not-allowed
+                      group relative overflow-hidden
+                    `}
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-3">
+                    {isSubmitting ? "UPLOADING..." : "INITIATE_TYPE_SEND >"}
+                  </span>
+                  <div className="absolute inset-0 bg-cyan-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                </button>
+              </div>
+            </form>
+
+            {/* Terminal Decor */}
+            <div className="absolute top-0 right-0 p-2">
+              <div className="w-3 h-3 border-t-2 border-r-2 border-cyan-500" />
+            </div>
+            <div className="absolute bottom-0 left-0 p-2">
+              <div className="w-3 h-3 border-b-2 border-l-2 border-cyan-500" />
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
