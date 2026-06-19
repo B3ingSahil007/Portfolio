@@ -22,11 +22,11 @@ const Experience_Data = [
         s_desc: "The internship at Tech Nishal provided an opportunity to build robust web applications, focusing on front-end, React JS development. Key responsibilities included implementing user-friendly interfaces, debugging applications, and working on team-oriented projects. Contributed to the development of Fashion Frenzy, an ecommerce app designed to connect fashion enthusiasts with sellers. "
     },
     {
-        e_name: "React Js Developer",
-        e_company: "SNM TechCraft Innovation",
-        e_time: "April 2025 - Present",
-        s_desc: "As a React JS Developer, I focus on building scalable, high-performance web applications with clean, responsive, and user-friendly interfaces. My responsibilities include developing reusable components, efficiently managing application state, and ensuring seamless cross-browser compatibility. I’ve contributed significantly to the development of Nico-Industrial and the Zzazo School Application, delivering enhanced user experiences, optimized performance, and visually engaging UIs."
-    },
+        e_name: "MERN Stack / Blockchain Developer",
+        e_company: "ZarWebCoders",
+        e_time: "May 2024 - May 2026",
+        s_desc: "As a MERN Stack / Blockchain Developer, I design and develop full-stack web applications using MongoDB, Express.js, React.js, and Node.js. I build responsive user interfaces, develop secure REST APIs, manage databases, and implement authentication and authorization systems. I focus on writing clean, maintainable, and scalable code while optimizing application performance and ensuring a seamless user experience. I contributed to the development of Nico-Industrial and the WomUp, EVaultCrypto, Ivamax Application by delivering robust backend services, dynamic frontend features, and efficient database solutions."
+    }
 ];
 
 export default Experience_Data.reverse();
