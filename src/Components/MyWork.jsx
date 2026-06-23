@@ -34,7 +34,7 @@ const ProjectCard = ({ project, index, isDark }) => {
   }
 
   return (
-    <motion.div
+    <motion.article
       style={{
         rotateX,
         rotateY,
@@ -62,7 +62,8 @@ const ProjectCard = ({ project, index, isDark }) => {
         <div className="absolute inset-0 bg-scan-line z-10 opacity-0 group-hover:opacity-20 animate-scan pointer-events-none" />
         <img
           src={project.w_img}
-          alt={project.w_name}
+          alt={`Screenshot of ${project.w_name}`}
+          loading="lazy"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
         />
 
@@ -106,7 +107,7 @@ const ProjectCard = ({ project, index, isDark }) => {
           ))}
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   )
 }
 

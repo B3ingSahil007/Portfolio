@@ -37,7 +37,7 @@ const About = () => {
           className="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start"
         >
           {/* LEFT: Cyber Identity Module */}
-          <div className="lg:col-span-5 relative">
+          <article className="lg:col-span-5 relative">
             <div className="relative group perspective-1000">
 
               {/* Main Card Container */}
@@ -101,7 +101,7 @@ const About = () => {
               {/* Background Ghost Card */}
               <div className="absolute inset-0 bg-blue-600/10 clip-cyber translate-x-4 -translate-y-4 -z-10 group-hover:translate-x-6 group-hover:-translate-y-6 transition-all duration-500 border border-blue-500/20" />
             </div>
-          </div>
+          </article>
 
           {/* RIGHT: Data Readout */}
           <div className="lg:col-span-7 space-y-10">
@@ -121,7 +121,7 @@ const About = () => {
               <p className={`text-lg font-mono leading-relaxed ${isDark ? "text-gray-400" : "text-gray-600"}`}>
                 Execute protocol: <span className="text-cyan-500">Create</span>. Target: <span className="text-blue-500">Excellence</span>.
                 <br /><br />
-                As an operative in the realm of Frontend Development, I specialize in constructing high-fidelity web interfaces. My directive is to merge visual precision with algorithmic efficiency, ensuring every pixel serves a purpose.
+                As an operative in the realm of Full Stack Development, I specialize in constructing high-fidelity web interfaces and robust backends using Node.js and MongoDB. My directive is to merge visual precision with algorithmic efficiency, ensuring every pixel and database query serves a purpose.
               </p>
             </motion.div>
 

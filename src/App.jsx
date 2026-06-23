@@ -1,20 +1,23 @@
 "use client"
 
-// import { useEffect } from "react"
 import { ThemeProvider, useTheme } from "./Context/theme-context"
 import LoadingScreen from "./Components/loading-screen"
 import Navbar from "./Components/Navbar"
 import Hero from "./Components/Hero"
-import About from "./Components/About"
-import Services from "./Components/Services"
-import MyWork from "./Components/MyWork"
-import Experiences from "./Components/Experiences"
-import Contact from "./Components/Contact"
 import Footer from "./Components/Footer"
 import CustomCursor from "./Components/CustomCursor"
 
+import SEO from "./seo/SEO"
+import StructuredData from "./seo/StructuredData"
+
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom"
-import { useEffect } from "react"
+import React, { useEffect, Suspense } from "react"
+
+const About = React.lazy(() => import("./Components/About"))
+const Services = React.lazy(() => import("./Components/Services"))
+const MyWork = React.lazy(() => import("./Components/MyWork"))
+const Experiences = React.lazy(() => import("./Components/Experiences"))
+const Contact = React.lazy(() => import("./Components/Contact"))
 import AdminLayout from "./Admin/AdminLayout"
 import Login from "./Admin/Login"
 import Dashboard from "./Admin/Dashboard"
@@ -30,14 +33,28 @@ import MessageForm from "./Admin/Forms/MessageForm"
 const MainLayout = () => {
   return (
     <>
+      <SEO 
+        title="My Portfolio | Sahil Miyawala"
+        description="Portfolio of Sahil Miyawala, a Full Stack Developer specializing in React and MERN stack."
+        keywords="Full Stack Developer, MERN Stack Developer, React Developer, Node.js, MongoDB"
+        canonicalUrl="https://sahilmiyawala.com"
+        ogTitle="My Portfolio | Sahil Miyawala"
+        ogDescription="Portfolio of Sahil Miyawala, a Full Stack Developer specializing in React and MERN stack."
+        ogUrl="https://sahilmiyawala.com"
+        twitterTitle="My Portfolio | Sahil Miyawala"
+        twitterDescription="Portfolio of Sahil Miyawala, a Full Stack Developer specializing in React and MERN stack."
+      />
+      <StructuredData />
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Services />
-        <MyWork />
-        <Experiences />
-        <Contact />
+        <Suspense fallback={null}>
+          <About />
+          <Services />
+          <MyWork />
+          <Experiences />
+          <Contact />
+        </Suspense>
       </main>
       <Footer />
     </>

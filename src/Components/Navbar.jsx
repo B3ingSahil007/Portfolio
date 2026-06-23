@@ -50,6 +50,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
+      aria-label="Main Navigation"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -115,6 +116,9 @@ const Navbar = () => {
           ref={menuButtonRef}
           className={`lg:hidden text-2xl cursor-pointer ${isDark ? "text-white" : "text-gray-900"}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          role="button"
+          aria-label="Toggle Mobile Menu"
+          aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <IoMdClose /> : <MdOutlineMenu />}
         </div>
@@ -145,7 +149,7 @@ const Navbar = () => {
                   <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent">Sahil</h1>
                   <ThemeToggle />
                 </div>
-                <IoMdClose className="text-2xl cursor-pointer" onClick={() => setIsMobileMenuOpen(false)} />
+                <IoMdClose className="text-2xl cursor-pointer" role="button" aria-label="Close Mobile Menu" onClick={() => setIsMobileMenuOpen(false)} />
               </div>
               <ul className="flex flex-col gap-4">
                 {["Home", "About Me", "Services", "My Work", "Experiences", "Contact Me"].map((menu) => (

@@ -9,7 +9,7 @@ import { useTheme } from "../Context/theme-context"
 // Separate Typewriter Component to prevent unnecessary re-renders
 const TypewriterEffect = memo(() => (
   <Typewriter
-    words={["Frontend Developer", "MERN Stack Developer", "React Native Developer", "Software Developer", "Web Designer"]}
+    words={["Full Stack Developer", "MERN Stack Developer", "React Developer", "Software Developer", "Frontend Developer"]}
     loop={true}
     cursor
     cursorStyle="|"
@@ -45,7 +45,7 @@ const Hero = () => {
   }
 
   return (
-    <div
+    <section
       id="Home"
       className={`hero flex flex-col items-center gap-8 py-32 sm:py-36 sm:pb-32 px-4 sm:px-8 lg:px-16 xl:px-24 min-h-screen relative overflow-hidden transition-all duration-1000 ${isDark ? "bg-[#030712]" : "bg-gradient-to-br from-blue-50 via-white to-indigo-50"
         }`}
@@ -120,7 +120,7 @@ const Hero = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 pointer-events-none animate-scan" style={{ backgroundSize: '100% 3px' }} />
 
           <p className={`text-lg sm:text-xl font-mono leading-relaxed text-center relative z-10 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-            "Specializing in building exceptional digital experiences. From high-performance web applications to cross-platform mobile solutions, I bring technical expertise and creative vision to every project."
+            "As a dedicated Full Stack Developer, I specialize in building exceptional digital experiences. From high-performance React web applications to robust MERN stack backend solutions, I bring technical expertise and creative vision to every project."
           </p>
         </motion.div>
 
@@ -175,7 +175,7 @@ const Hero = () => {
           />
         </div>
       </motion.div>
-    </div>
+    </section>
   )
 }
 

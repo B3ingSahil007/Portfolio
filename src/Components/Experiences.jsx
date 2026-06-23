@@ -35,7 +35,7 @@ const Experiences = () => {
             {Experience_Data.map((exp, index) => {
               const isEven = index % 2 === 0
               return (
-                <motion.div
+                <motion.article
                   key={index}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ const Experiences = () => {
 
                   {/* Spacer for empty side */}
                   <div className="hidden md:block w-[45%]" />
-                </motion.div>
+                </motion.article>
               )
             })}
           </div>

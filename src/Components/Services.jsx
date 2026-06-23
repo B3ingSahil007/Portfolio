@@ -42,10 +42,11 @@ const Services = () => {
     }
 
     return (
-        <div
+        <section
             id="Services"
             className={`services flex flex-col items-center justify-center py-0 px-6 transition-all duration-1000 ${isDark ? "bg-[#030712]" : "bg-gray-50"
                 }`}
+            aria-label="My Services"
         >
             <Title title="Services" />
 
@@ -70,7 +71,7 @@ const Services = () => {
                     ]
 
                     return (
-                        <motion.div
+                        <motion.article
                             key={index}
                             variants={itemVariants}
                             whileHover={{
@@ -79,6 +80,8 @@ const Services = () => {
                             }}
                             className={`group relative overflow-hidden p-6 clip-cyber-sm glass-card transition-slow cursor-pointer flex flex-col justify-between ${gridSpans[index % gridSpans.length]
                                 } ${isDark ? "bg-white/5 hover:bg-white/10" : "bg-gray-50 hover:bg-white"}`}
+                            itemScope
+                            itemType="https://schema.org/Service"
                         >
                             {/* Neon Border */}
                             <div className="neon-border clip-cyber-sm text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -91,10 +94,10 @@ const Services = () => {
                                     }`}>
                                     <IconComponent size={24} />
                                 </div>
-                                <h3 className={`text-xl font-bold mb-3 font-mono ${isDark ? "text-white" : "text-gray-900"}`}>
+                                <h3 itemProp="name" className={`text-xl font-bold mb-3 font-mono ${isDark ? "text-white" : "text-gray-900"}`}>
                                     {service.s_name}
                                 </h3>
-                                <p className={`text-sm leading-relaxed ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+                                <p itemProp="description" className={`text-sm leading-relaxed ${isDark ? "text-gray-400" : "text-gray-600"}`}>
                                     {service.s_desc}
                                 </p>
                             </div>
@@ -104,11 +107,11 @@ const Services = () => {
                                 }`}>
                                 {service.s_no}
                             </span>
-                        </motion.div>
+                        </motion.article>
                     )
                 })}
             </motion.div>
-        </div>
+        </section>
     )
 }
 

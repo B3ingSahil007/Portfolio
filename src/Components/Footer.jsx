@@ -10,7 +10,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <div className={`
+    <footer className={`
       relative border-t-2 py-12 overflow-hidden
       ${isDark ? "bg-black border-cyan-900/30 text-gray-400" : "bg-gray-900 border-blue-500/30 text-gray-300"}
     `}>
@@ -29,7 +29,8 @@ const Footer = () => {
             </h2>
             <p className="font-mono text-sm leading-relaxed text-gray-500">
                // SYSTEM_STATUS: ONLINE <br />
-               // CURRENT_OBJECTIVE: DEPLOYING_EXCELLENCE
+               // ROLE: FREELANCE_WEB_DEVELOPER <br />
+               // CURRENT_OBJECTIVE: DEPLOYING_MERN_EXCELLENCE
             </p>
           </div>
 
@@ -59,7 +60,7 @@ const Footer = () => {
         </div>
 
       </div>
-    </div>
+    </footer>
   )
 }
 

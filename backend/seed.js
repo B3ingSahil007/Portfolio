@@ -17,7 +17,7 @@ const generalData = {
         bio: "I am a frontend developer from Ahmedabad, Gujarat, India.",
         stats: [
             { label: "Years of Experience", value: "2+" },
-            { label: "Projects Completed", value: "15+" }
+            { label: "Projects Completed", value: "30+" }
         ],
         skills: ["React", "JavaScript", "HTML", "CSS", "Node.js"]
     },
@@ -33,7 +33,7 @@ const servicesData = [
 ];
 
 const experienceData = [
-    { role: "React Js Developer", company: "SNM TechCraft", period: "April 2025 - Present", description: ["Building apps"] }
+    { role: "React Js Developer", company: "SNM TechCraft", period: "April 2025 - Present", description: ["Building apps"] }    
 ];
 
 const projectsData = [

@@ -36,6 +36,12 @@ const Contact = () => {
       if (res.success) {
         toast.success("E-Mail Sent Successfully")
         event.target.reset()
+        if (window.gtag) {
+          window.gtag('event', 'contact_submit', {
+            'event_category': 'engagement',
+            'event_label': 'Contact Form Submitted'
+          })
+        }
       }
     } catch (error) {
       toast.error("Failed to send message. Please try again.")
@@ -52,7 +58,7 @@ const Contact = () => {
   ]
 
   return (
-    <div
+    <section
       id="ContactMe"
       className={`relative py-24 px-4 sm:px-6 lg:px-12 overflow-hidden ${isDark ? "bg-[#030712]" : "bg-gray-50"}`}
     >
@@ -137,9 +143,10 @@ const Contact = () => {
 
             <form onSubmit={onSubmit} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-xs font-mono text-cyan-500/70 ml-2">AGENT_ID (NAME)</label>
+                <label htmlFor="name" className="text-xs font-mono text-cyan-500/70 ml-2">AGENT_ID (NAME)</label>
                 <input
                   type="text"
+                  id="name"
                   name="name"
                   required
                   className={`
@@ -152,9 +159,10 @@ const Contact = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-mono text-cyan-500/70 ml-2">COMMS_CHANNEL (EMAIL)</label>
+                <label htmlFor="email" className="text-xs font-mono text-cyan-500/70 ml-2">COMMS_CHANNEL (EMAIL)</label>
                 <input
                   type="email"
+                  id="email"
                   name="email"
                   required
                   className={`
@@ -167,8 +175,9 @@ const Contact = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-mono text-cyan-500/70 ml-2">DATA_PACKET (MESSAGE)</label>
+                <label htmlFor="message" className="text-xs font-mono text-cyan-500/70 ml-2">DATA_PACKET (MESSAGE)</label>
                 <textarea
+                  id="message"
                   name="message"
                   required
                   rows="4"
@@ -212,7 +221,7 @@ const Contact = () => {
 
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
