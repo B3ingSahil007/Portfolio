@@ -7,7 +7,7 @@ const StructuredData = () => {
     "@type": "Person",
     "name": "Sahil Miyawala",
     "jobTitle": "MERN Stack Developer",
-    "url": "https://sahilmiyawala.com", // Placeholder, will update later if domain changes
+    "url": "https://sahilmiyawala.vercel.app", // Placeholder, will update later if domain changes
     "sameAs": [
       "https://github.com/SahilMiyawala", // Assuming based on previous work
       "https://linkedin.com/in/sahil-miyawala"
@@ -17,7 +17,7 @@ const StructuredData = () => {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "url": "https://sahilmiyawala.com",
+    "url": "https://sahilmiyawala.vercel.app",
     "name": "Sahil Miyawala - Portfolio",
     "description": "MERN Stack Developer | React Developer | React Native Developer | Frontend Developer | Backend Developer | Software Engineer",
     "publisher": {
@@ -29,8 +29,8 @@ const StructuredData = () => {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "url": "https://sahilmiyawala.com",
-    "logo": "https://sahilmiyawala.com/vite.svg", // Replace with actual logo URL when available
+    "url": "https://sahilmiyawala.vercel.app",
+    "logo": "https://sahilmiyawala.vercel.app/vite.svg", // Replace with actual logo URL when available
     "name": "Sahil Miyawala Portfolio"
   };
 

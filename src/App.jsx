@@ -37,10 +37,10 @@ const MainLayout = () => {
         title="My Portfolio | Sahil Miyawala"
         description="Portfolio of Sahil Miyawala, a Full Stack Developer specializing in React and MERN stack."
         keywords="Full Stack Developer, MERN Stack Developer, React Developer, Node.js, MongoDB"
-        canonicalUrl="https://sahilmiyawala.com"
+        canonicalUrl="https://sahilmiyawala.vercel.app"
         ogTitle="My Portfolio | Sahil Miyawala"
         ogDescription="Portfolio of Sahil Miyawala, a Full Stack Developer specializing in React and MERN stack."
-        ogUrl="https://sahilmiyawala.com"
+        ogUrl="https://sahilmiyawala.vercel.app"
         twitterTitle="My Portfolio | Sahil Miyawala"
         twitterDescription="Portfolio of Sahil Miyawala, a Full Stack Developer specializing in React and MERN stack."
       />
