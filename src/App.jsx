@@ -41,7 +41,9 @@ const MainLayout = () => {
         ogTitle="My Portfolio | Sahil Miyawala"
         ogDescription="Portfolio of Sahil Miyawala, a Full Stack Developer specializing in React and MERN stack."
         ogUrl="https://sahilmiyawala.vercel.app"
+        ogImage="https://sahilmiyawala.vercel.app/preview.png"
         twitterTitle="My Portfolio | Sahil Miyawala"
+        twitterImage="https://sahilmiyawala.vercel.app/preview.png"
         twitterDescription="Portfolio of Sahil Miyawala, a Full Stack Developer specializing in React and MERN stack."
       />
       <StructuredData />

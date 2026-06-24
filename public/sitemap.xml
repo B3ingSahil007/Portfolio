@@ -7,7 +7,7 @@
     <priority>1.0</priority>
   </url>
   <!-- Main single-page sections -->
-  <url>
+  <!-- <url>
     <loc>https://sahilmiyawala.vercel.app/#about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -31,5 +31,5 @@
     <loc>https://sahilmiyawala.vercel.app/#contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
+  </url> -->
 </urlset>
