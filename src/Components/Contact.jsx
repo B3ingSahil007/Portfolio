@@ -143,7 +143,7 @@ const Contact = () => {
 
             <form onSubmit={onSubmit} className="space-y-6">
               <div className="space-y-2">
-                <label htmlFor="name" className="text-xs font-mono text-cyan-500/70 ml-2">AGENT_ID (NAME)</label>
+                <label htmlFor="name" className="text-xs font-mono text-cyan-400 ml-2">AGENT_ID (NAME)</label>
                 <input
                   type="text"
                   id="name"
@@ -159,7 +159,7 @@ const Contact = () => {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="email" className="text-xs font-mono text-cyan-500/70 ml-2">COMMS_CHANNEL (EMAIL)</label>
+                <label htmlFor="email" className="text-xs font-mono text-cyan-400 ml-2">COMMS_CHANNEL (EMAIL)</label>
                 <input
                   type="email"
                   id="email"
@@ -175,7 +175,7 @@ const Contact = () => {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-xs font-mono text-cyan-500/70 ml-2">DATA_PACKET (MESSAGE)</label>
+                <label htmlFor="message" className="text-xs font-mono text-cyan-400 ml-2">DATA_PACKET (MESSAGE)</label>
                 <textarea
                   id="message"
                   name="message"

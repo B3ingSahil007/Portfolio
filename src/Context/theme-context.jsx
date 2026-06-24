@@ -12,7 +12,7 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({ children }) => {
     const [isDark, setIsDark] = useState(true)
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         // Check for saved theme preference or default to dark mode
@@ -20,13 +20,6 @@ export const ThemeProvider = ({ children }) => {
         if (savedTheme) {
             setIsDark(savedTheme === "dark")
         }
-
-        // Simulate loading screen
-        const timer = setTimeout(() => {
-            setIsLoading(false)
-        }, 2000)
-
-        return () => clearTimeout(timer)
     }, [])
 
     useEffect(() => {

@@ -69,15 +69,15 @@ const About = () => {
                   {/* Identity Data */}
                   <div className="w-full space-y-4">
                     <div className="flex justify-between items-center border-b border-white/10 pb-2">
-                      <span className="text-cyan-500/70 text-sm font-mono tracking-wider">CLASS</span>
+                      <span className="text-cyan-400 text-sm font-mono tracking-wider">CLASS</span>
                       <span className="text-white font-mono text-lg">DEV_S-TIER</span>
                     </div>
                     <div className="flex justify-between items-center border-b border-white/10 pb-2">
-                      <span className="text-cyan-500/70 text-sm font-mono tracking-wider">LOC</span>
+                      <span className="text-cyan-400 text-sm font-mono tracking-wider">LOC</span>
                       <span className="text-white font-mono text-lg">AHMEDABAD, IN</span>
                     </div>
                     <div className="flex justify-between items-center border-b border-white/10 pb-2">
-                      <span className="text-cyan-500/70 text-sm font-mono tracking-wider">STATUS</span>
+                      <span className="text-cyan-400 text-sm font-mono tracking-wider">STATUS</span>
                       <span className="text-green-400 font-mono text-lg flex items-center gap-2">
                         <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                         ONLINE
@@ -196,7 +196,7 @@ const StatModule = ({ icon, value, label, sub, isDark }) => (
 
     <div className="relative z-10">
       <h4 className="text-4xl font-mono font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">{value}</h4>
-      <p className="text-xs font-mono text-cyan-500/70 tracking-widest uppercase mb-1">{label}</p>
+      <p className="text-xs font-mono text-cyan-400 tracking-widest uppercase mb-1">{label}</p>
       <p className="text-xs text-gray-500 font-mono">{sub}</p>
     </div>
 

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="/favicons.png" />
+  <link rel="icon" type="image/webp" href="/favicons.webp" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Portfolio | Sahil Miyawala</title>
   
@@ -16,7 +16,7 @@
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="My Portfolio | Sahil Miyawala" />
-  <meta property="og:image" content="https://sahilmiyawala.vercel.app/preview.png" />
+  <meta property="og:image" content="https://sahilmiyawala.vercel.app/preview.webp" />
   <meta property="og:description" content="Portfolio of Sahil Miyawala, a Full Stack Developer specializing in React and MERN stack." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sahilmiyawala.vercel.app" />
@@ -24,7 +24,7 @@
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="My Portfolio | Sahil Miyawala" />
-  <meta name="twitter:image" content="https://sahilmiyawala.vercel.app/preview.png" />
+  <meta name="twitter:image" content="https://sahilmiyawala.vercel.app/preview.webp" />
   <meta name="twitter:description" content="Portfolio of Sahil Miyawala, a Full Stack Developer specializing in React and MERN stack." />
 
   <!-- Google Analytics 4 Placeholder -->
@@ -36,57 +36,18 @@
     gtag('config', 'G-08ESR58JTB');
   </script>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script> -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
-  <style>
-    .cursor-circle {
-      position: fixed;
-      width: 25px;
-      height: 25px;
-      /* background-color: #a855f750; */
-      /* semi-transparent black */
-      border-radius: 50%;
-      pointer-events: none;
-      /* allows clicking through the circle */
-      transform: translate(-50%, -50%);
-      z-index: 9999;
-      /* ensures it's above other elements */
-      transition: transform 0.3s ease, width 0.5s ease, height 0.5s ease;
-      filter: blur(5px);
-    }
-  </style>
 </head>
 
 <body>
   <div id="root"></div>
-  <div class="cursor-circle"></div>
   <script type="module" src="/src/main.jsx"></script>
-  <script>
-    document.addEventListener("mousemove", function (e) {
-      const circle = document.querySelector(".cursor-circle");
-      circle.style.left = e.clientX + "px";
-      circle.style.top = e.clientY + "px";
-    });
-
-    // Optional: Change size on click
-    document.addEventListener("mousedown", function () {
-      const circle = document.querySelector(".cursor-circle");
-      circle.style.width = "15px";
-      circle.style.height = "15px";
-    });
-
-    document.addEventListener("mouseup", function () {
-      const circle = document.querySelector(".cursor-circle");
-      circle.style.width = "20px";
-      circle.style.height = "20px";
-    });
-  </script>
 </body>
 
 </html>

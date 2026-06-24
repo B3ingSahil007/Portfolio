@@ -18,17 +18,17 @@ const Services = React.lazy(() => import("./Components/Services"))
 const MyWork = React.lazy(() => import("./Components/MyWork"))
 const Experiences = React.lazy(() => import("./Components/Experiences"))
 const Contact = React.lazy(() => import("./Components/Contact"))
-import AdminLayout from "./Admin/AdminLayout"
-import Login from "./Admin/Login"
-import Dashboard from "./Admin/Dashboard"
-import GeneralForm from "./Admin/Forms/GeneralForm"
-import AboutForm from "./Admin/Forms/AboutForm"
-import TechStackForm from "./Admin/Forms/TechStackForm"
-import ServicesForm from "./Admin/Forms/ServicesForm"
-import ProjectsForm from "./Admin/Forms/ProjectsForm"
-import ExperienceForm from "./Admin/Forms/ExperienceForm"
-import ContactForm from "./Admin/Forms/ContactForm"
-import MessageForm from "./Admin/Forms/MessageForm"
+const AdminLayout = React.lazy(() => import("./Admin/AdminLayout"))
+const Login = React.lazy(() => import("./Admin/Login"))
+const Dashboard = React.lazy(() => import("./Admin/Dashboard"))
+const GeneralForm = React.lazy(() => import("./Admin/Forms/GeneralForm"))
+const AboutForm = React.lazy(() => import("./Admin/Forms/AboutForm"))
+const TechStackForm = React.lazy(() => import("./Admin/Forms/TechStackForm"))
+const ServicesForm = React.lazy(() => import("./Admin/Forms/ServicesForm"))
+const ProjectsForm = React.lazy(() => import("./Admin/Forms/ProjectsForm"))
+const ExperienceForm = React.lazy(() => import("./Admin/Forms/ExperienceForm"))
+const ContactForm = React.lazy(() => import("./Admin/Forms/ContactForm"))
+const MessageForm = React.lazy(() => import("./Admin/Forms/MessageForm"))
 
 const MainLayout = () => {
   return (
@@ -41,9 +41,9 @@ const MainLayout = () => {
         ogTitle="My Portfolio | Sahil Miyawala"
         ogDescription="Portfolio of Sahil Miyawala, a Full Stack Developer specializing in React and MERN stack."
         ogUrl="https://sahilmiyawala.vercel.app"
-        ogImage="https://sahilmiyawala.vercel.app/preview.png"
+        ogImage="https://sahilmiyawala.vercel.app/preview.webp"
         twitterTitle="My Portfolio | Sahil Miyawala"
-        twitterImage="https://sahilmiyawala.vercel.app/preview.png"
+        twitterImage="https://sahilmiyawala.vercel.app/preview.webp"
         twitterDescription="Portfolio of Sahil Miyawala, a Full Stack Developer specializing in React and MERN stack."
       />
       <StructuredData />
@@ -85,32 +85,33 @@ const AppContent = () => {
     return () => document.removeEventListener("click", handleSmoothScroll)
   }, [])
 
-  if (isLoading) {
-    return <LoadingScreen />
-  }
-
   return (
-    <div className={`min-h-screen transition-all duration-1000 bg-tech-grid ${isDark ? "bg-gray-950" : "bg-white text-gray-900"}`}>
-      <div className="noise-overlay" />
-      <CustomCursor />
-      <Routes>
-        <Route path="/" element={<MainLayout />} />
+    <>
+      {isLoading && <LoadingScreen />}
+      <div className={`min-h-screen transition-all duration-1000 bg-tech-grid ${isDark ? "bg-gray-950" : "bg-white text-gray-900"}`}>
+        <div className="noise-overlay" />
+        <CustomCursor />
+        <Suspense fallback={<LoadingScreen />}>
+          <Routes>
+            <Route path="/" element={<MainLayout />} />
 
-        {/* Admin Routes */}
-        <Route path="/admin/login" element={<Login />} />
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="hero" element={<GeneralForm />} />
-          <Route path="identity" element={<AboutForm />} />
-          <Route path="tech-stack" element={<TechStackForm />} />
-          <Route path="services" element={<ServicesForm />} />
-          <Route path="deployments" element={<ProjectsForm />} />
-          <Route path="experience" element={<ExperienceForm />} />
-          <Route path="connection" element={<ContactForm />} />
-          <Route path="mail" element={<MessageForm />} />
-        </Route>
-      </Routes>
-    </div>
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<Login />} />
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="hero" element={<GeneralForm />} />
+              <Route path="identity" element={<AboutForm />} />
+              <Route path="tech-stack" element={<TechStackForm />} />
+              <Route path="services" element={<ServicesForm />} />
+              <Route path="deployments" element={<ProjectsForm />} />
+              <Route path="experience" element={<ExperienceForm />} />
+              <Route path="connection" element={<ContactForm />} />
+              <Route path="mail" element={<MessageForm />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </div>
+    </>
   )
 }
 

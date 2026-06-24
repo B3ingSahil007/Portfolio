@@ -48,9 +48,9 @@ const Footer = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-gray-600">
           <div>
-            <span className="text-cyan-800">/* </span>
+            <span className="text-cyan-600">/* </span>
             &copy; {currentYear} Sahil Miyawala. SECURED.
-            <span className="text-cyan-800"> */</span>
+            <span className="text-cyan-600"> */</span>
           </div>
 
           <div className="flex gap-6">
@@ -69,7 +69,7 @@ const Navlink = ({ href, label }) => (
     href={href}
     className="relative group hover:text-cyan-400 transition-colors cursor-pointer"
   >
-    <span className="text-cyan-800 mr-1 opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+    <span className="text-cyan-600 mr-1 opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
     {label}
   </AnchorLink>
 )

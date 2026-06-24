@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 :root {
   --primary: #2563eb;
@@ -14,9 +13,9 @@
 }
 
 body {
-  font-family: 'VT323', monospace;
-  font-size: 1.2rem;
-  /* VT323 is often smaller, bumping size slightly */
+  font-family: monospace;
+  font-size: 1.1rem;
+  /* Reverted VT323 bump */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -24,7 +23,7 @@ body {
 
 code,
 .font-mono {
-  font-family: 'VT323', monospace;
+  font-family: monospace;
 }
 
 /* Noise Texture Overlay */
